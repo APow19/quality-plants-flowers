@@ -358,7 +358,7 @@
        WEDDING PAGE
     ══════════════════════════════════ */
     .wedding-hero {
-      height: 60vh;
+      min-height: 60vh;
       position: relative;
       display: flex; align-items: flex-end;
       padding: 0 8% 4rem;
@@ -376,7 +376,7 @@
     .wedding-hero::after {
       content:'';
       position: absolute; inset: 0;
-      background: linear-gradient(transparent 0%, rgba(15,25,15,0.55) 40%, rgba(15,25,15,0.88) 100%);
+      background: linear-gradient(rgba(15,25,15,0.55) 0%, rgba(15,25,15,0.75) 40%, rgba(15,25,15,0.92) 100%);
     }
     .wedding-hero-content { position: relative; z-index: 1; max-width: 700px; }
     .wedding-hero-content .section-label { color: var(--gold); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
@@ -568,8 +568,8 @@
 
     /* ── ABOUT PAGE ── */
     .about-hero {
-      height: 50vh;
-      background: url('../images/about_hero.webp') center/cover;
+      height: 65vh;
+      background: url('../images/about_hero.webp') center 30%/cover;
       display: flex; align-items: flex-end;
       padding: 3rem 8%;
       position: relative;
@@ -671,6 +671,7 @@
       display: flex; gap: 0.5rem; flex-wrap: wrap;
       padding: 2rem 8%;
     }
+    .swipe-hint { display: none; }
     .filter-btn {
       padding: 0.5rem 1.2rem;
       border: 1px solid var(--border);
@@ -703,6 +704,29 @@
     }
     .gallery-item img { width: 100%; max-width: 100%; display: block; transition: transform 0.4s; }
     .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0.65rem; right: 0.65rem;
+      width: 30px; height: 30px;
+      background: rgba(255,255,255,0.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='6' cy='6' r='4' fill='none' stroke='%23555' stroke-width='1.5'/%3E%3Cline x1='9.5' y1='9.5' x2='13' y2='13' stroke='%23555' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") center/15px no-repeat;
+      border-radius: 50%;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+      opacity: 0.8;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .gallery-item:hover::before { opacity: 1; transform: scale(1.12); }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(15,25,15,0);
+      transition: background 0.35s;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .gallery-item:hover::after { background: rgba(15,25,15,0.18); }
     .gallery-item .gallery-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(transparent, rgba(30,40,30,0.7));
@@ -1087,7 +1111,6 @@
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .delivery-banner { font-size: 0.68rem; white-space: normal; overflow: hidden; }
-      .banner-extra { display: none; }
       nav { top: 28px; }
       .page { padding-top: 100px; }
       .nav-links { display: none; }
@@ -1118,6 +1141,19 @@
         scrollbar-width: none;
       }
       .gallery-grid::-webkit-scrollbar { display: none; }
+      .gallery-item::before { display: none; }
+      .swipe-hint {
+        display: block;
+        text-align: center;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        color: var(--light-text);
+        padding: 0.25rem 0 0.75rem;
+      }
+      @keyframes nudge-left  { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-4px); } }
+      @keyframes nudge-right { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+      .swipe-arrow:first-child { display: inline-block; animation: nudge-left  1.4s ease-in-out infinite; }
+      .swipe-arrow:last-child  { display: inline-block; animation: nudge-right 1.4s ease-in-out infinite; }
       .gallery-item {
         flex: 0 0 100%;
         width: 100%;
@@ -1182,7 +1218,7 @@
       .occasion-item { min-width: 100px; padding: 1rem 0.5rem; }
       .occasion-item .oi { font-size: 1.2rem; }
       .page-header { padding: 2.5rem 5% 1.5rem; }
-      .wedding-hero { height: 50vh; min-height: 320px; }
+      .wedding-hero { min-height: max(50vh, 320px); }
       .wedding-hero-content p { display: none; }
     }
 

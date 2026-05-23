@@ -153,6 +153,11 @@
     btn.addEventListener('click', function() {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? '' : 'none';
+      });
     });
   });
 
@@ -171,8 +176,9 @@
 
     function open(i) {
       if (window.innerWidth <= 768) return;
-      items = [...document.querySelectorAll('.gallery-item')];
-      idx = i;
+      items = [...document.querySelectorAll('.gallery-item')].filter(el => el.style.display !== 'none');
+      idx = items.indexOf(document.querySelectorAll('.gallery-item')[i]);
+      if (idx === -1) return;
       render(false);
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

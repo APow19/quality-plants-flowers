@@ -548,16 +548,16 @@
     <h1>Our Gallery</h1>
     <p>A glimpse into the arrangements and installations we've had the joy of creating over 20+ years.</p>
   </div>
+
   <div class="gallery-filters">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Weddings</button>
-    <button class="filter-btn">Events</button>
-    <button class="filter-btn">Seasonal</button>
-    <button class="filter-btn">Sympathy</button>
-    <button class="filter-btn">Gifts</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="weddings">Weddings</button>
   </div>
+
+  <p class="swipe-hint"><span class="swipe-arrow">&#8592;</span> Swipe to browse <span class="swipe-arrow">&#8594;</span></p>
+
   <div class="gallery-grid">
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="weddings">
       <img loading="lazy" src="images/Bridal_Blooms.webp" alt="Wedding flowers"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
@@ -584,7 +584,7 @@
       <img loading="lazy" src="images/Table_full_of_plants.webp" alt="Mixed seasonal plants and flowers display"/>
       <div class="gallery-caption"><span>Seasonal</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="weddings">
       <img loading="lazy" src="images/Brides.webp" alt="Bridal bouquet"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
@@ -592,13 +592,81 @@
       <img loading="lazy" src="images/PurpleFlowers.webp" alt="Purple flower arrangement"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="weddings">
       <img loading="lazy" src="images/WristFlowers.webp" alt="Wrist corsage arrangement"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="weddings">
       <img loading="lazy" src="images/Bridesmaids_flowers.webp" alt="Bridesmaid flowers"/>
       <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Flowers_HandTied.webp" alt="Hand-tied bouquet"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Box_of_flowers.webp" alt="Box of flowers gift arrangement"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Thank_you_flowers.webp" alt="Thank you flower arrangement"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Christmas_wreath.webp" alt="Christmas wreath"/>
+      <div class="gallery-caption"><span>Seasonal</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/carousel_bride.jpg" alt="Bridal bouquet"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/Bride_bouquet_church.webp" alt="Bridal bouquet at church"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/wedding_intro.webp" alt="Wedding flowers"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/package_bridesmaids.webp" alt="Bridesmaid bouquets"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/package_buttonholes.jpg" alt="Groomsmen buttonholes"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/package_flower_crown.webp" alt="Flower crown"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/package_table_flowers.jpg" alt="Wedding table flowers"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Casket_spray.webp" alt="Funeral casket spray"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Sympathy_flowers.webp" alt="Sympathy flowers"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Memorial_flowers.webp" alt="Memorial flowers"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Corporate_event.webp" alt="Corporate event flowers"/>
+      <div class="gallery-caption"><span>Events</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Flower_arrangement_office_rec.webp" alt="Office reception flower arrangement"/>
+      <div class="gallery-caption"><span>Events</span></div>
+    </div>
+    <div class="gallery-item">
+      <img loading="lazy" src="images/Corporate_gifting.webp" alt="Corporate gifting flowers"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
     </div>
   </div>
   <div class="gallery-slider-controls">
