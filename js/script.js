@@ -278,9 +278,20 @@
   })();
 
   // Contact form
-  function submitForm() {
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      fetch('/', { method: 'POST', body: data })
+        .then(() => {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        })
+        .catch(() => {
+          alert('Sorry, there was a problem sending your message. Please call us or try again.');
+        });
+    });
   }
 
   // Fade-up animations
