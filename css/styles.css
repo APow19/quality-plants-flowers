@@ -1142,6 +1142,7 @@
       }
       .gallery-grid::-webkit-scrollbar { display: none; }
       .gallery-item::before { display: none; }
+      .gallery-filters { display: none; }
       .swipe-hint {
         display: block;
         text-align: center;
