@@ -135,6 +135,16 @@
     observeFadeUps();
   }
 
+  function showPageForm(id) {
+    showPage(id);
+    if (window.innerWidth <= 768) {
+      setTimeout(function() {
+        var el = document.getElementById('contact-form');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
+
   // Mobile menu
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
@@ -248,6 +258,7 @@
     if (!grid || !dotsContainer) return;
 
     const items = grid.querySelectorAll('.gallery-item');
+    const total = items.length;
 
     items.forEach(function(_, i) {
       const dot = document.createElement('button');
@@ -274,12 +285,42 @@
 
     grid.addEventListener('scroll', updateActiveDot, { passive: true });
 
+    // Loop on prev/next buttons
     prevBtn.addEventListener('click', function() {
-      scrollToSlide(Math.max(0, getCurrentIndex() - 1));
+      const idx = getCurrentIndex();
+      scrollToSlide(idx === 0 ? total - 1 : idx - 1);
     });
 
     nextBtn.addEventListener('click', function() {
-      scrollToSlide(Math.min(items.length - 1, getCurrentIndex() + 1));
+      const idx = getCurrentIndex();
+      scrollToSlide(idx === total - 1 ? 0 : idx + 1);
+    });
+
+    // Limit touch swipe to one image at a time
+    let tsX = 0, tsY = 0, axisLocked = false;
+
+    grid.addEventListener('touchstart', function(e) {
+      tsX = e.touches[0].clientX;
+      tsY = e.touches[0].clientY;
+      axisLocked = false;
+    }, { passive: true });
+
+    grid.addEventListener('touchmove', function(e) {
+      const dx = Math.abs(e.touches[0].clientX - tsX);
+      const dy = Math.abs(e.touches[0].clientY - tsY);
+      if (!axisLocked && dx > dy && dx > 5) axisLocked = true;
+      if (axisLocked) e.preventDefault();
+    }, { passive: false });
+
+    grid.addEventListener('touchend', function(e) {
+      const diff = tsX - e.changedTouches[0].clientX;
+      const idx = getCurrentIndex();
+      if (Math.abs(diff) > 30) {
+        scrollToSlide(diff > 0 ? (idx === total - 1 ? 0 : idx + 1) : (idx === 0 ? total - 1 : idx - 1));
+      } else {
+        scrollToSlide(idx);
+      }
+      axisLocked = false;
     });
   })();
 

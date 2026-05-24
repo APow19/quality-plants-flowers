@@ -1065,7 +1065,7 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
       gap: 3rem;
       margin-bottom: 3rem;
     }
@@ -1208,7 +1208,9 @@
       .lynn-img { height: 300px; }
       .carousel { height: 56vh; min-height: 320px; }
       .carousel-slide img { object-position: center center; }
-      .carousel-arrow { width: 40px; height: 40px; font-size: 1rem; }
+      .carousel-arrow { width: 36px; height: 36px; font-size: 0.9rem; top: auto; bottom: 1rem; transform: none; }
+      .carousel-arrow.prev { left: calc(50% - 48px); }
+      .carousel-arrow.next { right: calc(50% - 48px); }
       .carousel-slide::after { background: linear-gradient(160deg, rgba(20,32,20,0.62) 0%, rgba(20,32,20,0.38) 60%, rgba(20,32,20,0.18) 100%); }
       .carousel-eyebrow { color: rgba(255,255,255,0.95); }
       .carousel-text p { color: #fff; }
