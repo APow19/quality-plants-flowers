@@ -1092,7 +1092,7 @@
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: 1.5rem;
-      display: flex; justify-content: center; align-items: center;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
       font-size: 0.78rem;
       text-align: center;
     }
@@ -1198,7 +1198,7 @@
       .contact-form-area { padding: 3rem 5%; }
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; gap: 0.5rem; }
+      .footer-bottom { gap: 0.4rem; }
       .section { padding: 4rem 5%; }
       .collections { padding: 0 5% 4rem; }
       .wedding-intro { grid-template-columns: 1fr; }
@@ -1231,7 +1231,8 @@
       .carousel-text h1 { font-size: 2rem; }
       .carousel-text p { font-size: 0.88rem; }
       .btn { padding: 0.75rem 1.4rem; font-size: 0.7rem; }
-      .footer-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
       .wedding-packages { padding: 3rem 5%; }
       .packages-grid { grid-template-columns: 1fr; }
       /* gallery slider already handles single-column on mobile */
