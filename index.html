@@ -8,13 +8,18 @@
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://www.qualityplantsandflowers.com" />
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SS256YG8JS"></script>
+  <!-- Google Analytics — loaded after page is interactive to avoid blocking LCP -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-SS256YG8JS');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-SS256YG8JS';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-SS256YG8JS');
+    });
   </script>
 
   <!-- Open Graph -->
@@ -37,8 +42,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <!-- Non-blocking Google Fonts load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
+  </noscript>
+  <link rel="stylesheet" href="css/styles.css?v=3" />
+  <script src="js/script.js" defer></script>
 
   <script type="application/ld+json">
   {
@@ -98,23 +112,24 @@
 
 <!-- NAVIGATION -->
 <nav id="navbar">
-  <a class="nav-logo" onclick="showPage('home')">Quality Plants <span>&</span> Flowers</a>
+  <a class="nav-logo" href="/" onclick="showPage('home');return false;">Quality Plants <span>&</span> Flowers</a>
   <ul class="nav-links" id="navLinks">
-    <li><a onclick="showPage('home');closeMenu()">Home</a></li>
-    <li><a onclick="showPage('gifts');closeMenu()">Gifts</a></li>
-    <li><a onclick="showPage('weddings');closeMenu()">Weddings</a></li>
-    <li><a onclick="showPage('funerals');closeMenu()">Funerals</a></li>
-    <li><a onclick="showPage('occasions');closeMenu()">Occasions</a></li>
-    <li><a onclick="showPage('corporate');closeMenu()">Corporate</a></li>
-    <li><a onclick="showPage('about');closeMenu()">About</a></li>
-    <li><a onclick="showPage('gallery');closeMenu()">Gallery</a></li>
-    <li><a onclick="showPage('contact');closeMenu()" class="nav-cta">Get in Touch</a></li>
+    <li><a href="/" onclick="showPage('home');closeMenu();return false;">Home</a></li>
+    <li><a href="#gifts" onclick="showPage('gifts');closeMenu();return false;">Gifts</a></li>
+    <li><a href="#weddings" onclick="showPage('weddings');closeMenu();return false;">Weddings</a></li>
+    <li><a href="#funerals" onclick="showPage('funerals');closeMenu();return false;">Funerals</a></li>
+    <li><a href="#occasions" onclick="showPage('occasions');closeMenu();return false;">Occasions</a></li>
+    <li><a href="#corporate" onclick="showPage('corporate');closeMenu();return false;">Corporate</a></li>
+    <li><a href="#about" onclick="showPage('about');closeMenu();return false;">About</a></li>
+    <li><a href="#gallery" onclick="showPage('gallery');closeMenu();return false;">Gallery</a></li>
+    <li><a href="#contact" onclick="showPage('contact');closeMenu();return false;" class="nav-cta">Get in Touch</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
+<main>
 <!-- ══════════════════ HOME PAGE ══════════════════ -->
 <div id="home" class="page active">
 
@@ -124,7 +139,11 @@
 
       <!-- Slide 1 -->
       <div class="carousel-slide">
-        <img src="images/Flowers_HandTied.webp" alt="Hand-tied bouquet by Quality Plants and Flowers, florist in Denby Dale"/>
+        <img src="images/Flowers_HandTied.webp"
+             srcset="images/Flowers_HandTied-600w.webp 600w, images/Flowers_HandTied.webp 1200w"
+             sizes="(max-width: 768px) 100vw, 770px"
+             alt="Hand-tied bouquet by Quality Plants and Flowers, florist in Denby Dale"
+             fetchpriority="high"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Family florist · Denby Dale · 20 years' experience</p>
@@ -140,7 +159,7 @@
 
       <!-- Slide 2 -->
       <div class="carousel-slide slide-bride">
-        <img src="images/carousel_bride.jpg" alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"/>
+        <img src="images/carousel_bride.webp" alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Wedding Specialists · Bridal Flowers</p>
@@ -246,7 +265,7 @@
 <div id="weddings" class="page">
 
   <div class="wedding-hero">
-    <img loading="lazy" src="images/carousel_bride.jpg" alt="Bridal blooms wedding flower arrangement, florist serving Huddersfield &amp; Barnsley"/>
+    <img loading="lazy" src="images/carousel_bride.webp" alt="Bridal blooms wedding flower arrangement, florist serving Huddersfield &amp; Barnsley"/>
     <div class="wedding-hero-content">
       <p class="section-label">Wedding Flowers · Denby Dale</p>
       <h1>Your Day, Your Flowers, <em>Perfectly Crafted</em></h1>
@@ -577,7 +596,7 @@
       <div class="gallery-caption"><span>Seasonal</span></div>
     </div>
     <div class="gallery-item" data-category="weddings">
-      <img loading="lazy" src="images/carousel_bride.jpg" alt="Bridal bouquet"/>
+      <img loading="lazy" src="images/carousel_bride.webp" alt="Bridal bouquet"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
     <div class="gallery-item" data-category="weddings">
@@ -1048,6 +1067,8 @@
   </div>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1059,13 +1080,13 @@
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a onclick="showPage('home')">Home</a></li>
-        <li><a onclick="showPage('about')">About Lynn</a></li>
-        <li><a onclick="showPage('weddings')">Weddings</a></li>
-        <li><a onclick="showPage('funerals')">Funerals</a></li>
-        <li><a onclick="showPage('corporate')">Corporate</a></li>
-        <li><a onclick="showPage('gallery')">Gallery</a></li>
-        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
+        <li><a href="#about" onclick="showPage('about');return false;">About Lynn</a></li>
+        <li><a href="#weddings" onclick="showPage('weddings');return false;">Weddings</a></li>
+        <li><a href="#funerals" onclick="showPage('funerals');return false;">Funerals</a></li>
+        <li><a href="#corporate" onclick="showPage('corporate');return false;">Corporate</a></li>
+        <li><a href="#gallery" onclick="showPage('gallery');return false;">Gallery</a></li>
+        <li><a href="#contact" onclick="showPage('contact');return false;">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1074,19 +1095,19 @@
         <li><a href="tel:01484868539">01484 868539</a></li>
         <li><a href="tel:07789861904">07789 861904</a></li>
         <li><a href="mailto:info@qualityplantsandflowers.com">info@qualityplantsandflowers.com</a></li>
-        <li><a>373 Wakefield Road</a></li>
-        <li><a>Denby Dale, HD8 8RP</a></li>
+        <li><span style="color:rgba(255,255,255,0.75);font-size:0.85rem;">373 Wakefield Road</span></li>
+        <li><span style="color:rgba(255,255,255,0.75);font-size:0.85rem;">Denby Dale, HD8 8RP</span></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>Made with ❤️ by Lynn &amp; the team at Quality Plants &amp; Flowers, Denby Dale</span>
     <span style="display:inline-flex;gap:0.75rem;align-items:center;margin-top:0.25rem;">
-      <span style="color:rgba(255,255,255,0.45);font-size:0.8rem;">&copy; 2026 Quality Plants &amp; Flowers</span>
+      <span style="color:rgba(255,255,255,0.70);font-size:0.8rem;">&copy; 2026 Quality Plants &amp; Flowers</span>
       <span style="color:rgba(255,255,255,0.25);">|</span>
-      <a href="privacy-policy.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.8rem;" target="_blank">Privacy Policy</a>
+      <a href="privacy-policy.html" style="color:rgba(255,255,255,0.70);text-decoration:none;font-size:0.8rem;" target="_blank">Privacy Policy</a>
       <span style="color:rgba(255,255,255,0.25);">|</span>
-      <a href="cookie-policy.html" style="color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.8rem;" target="_blank">Cookie Policy</a>
+      <a href="cookie-policy.html" style="color:rgba(255,255,255,0.70);text-decoration:none;font-size:0.8rem;" target="_blank">Cookie Policy</a>
     </span>
   </div>
 </footer>
@@ -1105,6 +1126,5 @@
   <button class="lightbox-next" aria-label="Next image">&#8594;</button>
 </div>
 
-<script src="js/script.js"></script>
 </body>
 </html>
