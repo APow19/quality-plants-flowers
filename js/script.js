@@ -149,6 +149,17 @@
     }
   }
 
+  // Deep-link support: the new standalone pages link to "/#contact" etc.
+  // A browser's native anchor-scroll can't reach that section because it's
+  // display:none until .active is set, so it silently lands on whatever's
+  // already visible (home) instead. Activate the right section on load.
+  (function() {
+    var hash = window.location.hash.slice(1);
+    if (hash && document.querySelectorAll('.page').length && document.getElementById(hash)) {
+      showPage(hash);
+    }
+  })();
+
   // Mobile menu
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');

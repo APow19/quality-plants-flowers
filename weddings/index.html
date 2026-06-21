@@ -52,14 +52,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
   <link rel="stylesheet" href="/css/styles.css?v=3" />
-  <!-- This page's H1 is longer than the homepage's wedding hero copy and wraps to 3 lines;
-       give it more room so the top line isn't clipped by the shared component's overflow:hidden. -->
+  <!-- This page's H1 is longer than the homepage's wedding hero copy and wraps to more lines;
+       give it more room so the top line isn't clipped by the shared component's overflow:hidden.
+       On mobile this needs a generous px floor, not just vh — real phone browsers shrink the
+       visible viewport with address-bar/toolbar chrome, so 50vh of the *visual* viewport is
+       less than 50vh of the layout viewport a desktop-style test window would show. -->
   <style>
+    #weddingPageHero { min-height: max(50vh, 560px); }
     @media (min-width: 769px) {
       #weddingPageHero { min-height: max(80vh, 620px); }
     }
   </style>
-  <script src="/js/script.js?v=2" defer></script>
+  <script src="/js/script.js?v=3" defer></script>
 
   <!-- Service schema -->
   <script type="application/ld+json">
