@@ -1,0 +1,36 @@
+# Canonicalisation: force https + www so every variant resolves to one URL.
+# (Cache/security headers stay in _headers — this file only handles redirects.)
+
+[[redirects]]
+  from = "http://qualityplantsandflowers.com/*"
+  to = "https://www.qualityplantsandflowers.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://qualityplantsandflowers.com/*"
+  to = "https://www.qualityplantsandflowers.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.qualityplantsandflowers.com/*"
+  to = "https://www.qualityplantsandflowers.com/:splat"
+  status = 301
+  force = true
+
+# Pretty-URL trailing slash — keep one canonical form per service page.
+[[redirects]]
+  from = "/weddings"
+  to = "/weddings/"
+  status = 301
+
+[[redirects]]
+  from = "/funerals"
+  to = "/funerals/"
+  status = 301
+
+[[redirects]]
+  from = "/corporate"
+  to = "/corporate/"
+  status = 301

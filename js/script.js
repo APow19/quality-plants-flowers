@@ -65,8 +65,10 @@
   }
 
   // Initialise position without animation
-  setTrackX(0);
-  resetAutoplay();
+  if (track) {
+    setTrackX(0);
+    resetAutoplay();
+  }
 
   // ── Touch / swipe ──
   let touchStartX = 0;
@@ -77,55 +79,57 @@
 
   const carouselEl = document.getElementById('heroCarousel');
 
-  carouselEl.addEventListener('touchstart', e => {
-    if (isAnimating) return;
-    touchStartX = touchCurX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    dragActive = true;
-    axisLocked = false;
-    clearInterval(autoplayTimer); // pause autoplay while touching
-  }, { passive: true });
+  if (carouselEl) {
+    carouselEl.addEventListener('touchstart', e => {
+      if (isAnimating) return;
+      touchStartX = touchCurX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      dragActive = true;
+      axisLocked = false;
+      clearInterval(autoplayTimer); // pause autoplay while touching
+    }, { passive: true });
 
-  carouselEl.addEventListener('touchmove', e => {
-    if (!dragActive) return;
-    const dx = e.touches[0].clientX - touchStartX;
-    const dy = e.touches[0].clientY - touchStartY;
-    touchCurX = e.touches[0].clientX;
-    if (!axisLocked) {
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
-        axisLocked = true; // confirmed horizontal
-      } else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 6) {
-        dragActive = false; // it's a scroll — abandon
-        return;
+    carouselEl.addEventListener('touchmove', e => {
+      if (!dragActive) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      touchCurX = e.touches[0].clientX;
+      if (!axisLocked) {
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
+          axisLocked = true; // confirmed horizontal
+        } else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 6) {
+          dragActive = false; // it's a scroll — abandon
+          return;
+        }
       }
-    }
-    if (axisLocked) {
-      // live drag feedback — clamp so you can't drag past edges
-      const basePct = -(currentSlide * 100);
-      const dragPct = (dx / carouselEl.offsetWidth) * 100;
-      setTrackX(basePct + Math.max(-30, Math.min(30, dragPct)));
-    }
-  }, { passive: true });
+      if (axisLocked) {
+        // live drag feedback — clamp so you can't drag past edges
+        const basePct = -(currentSlide * 100);
+        const dragPct = (dx / carouselEl.offsetWidth) * 100;
+        setTrackX(basePct + Math.max(-30, Math.min(30, dragPct)));
+      }
+    }, { passive: true });
 
-  carouselEl.addEventListener('touchend', e => {
-    if (!dragActive) return;
-    dragActive = false;
-    const diff = touchStartX - touchCurX;
-    if (axisLocked && Math.abs(diff) > 50) {
-      carouselMove(diff > 0 ? 1 : -1);
-    } else if (axisLocked) {
-      // horizontal drag started but didn't travel far enough — snap back
-      if (!isAnimating) {
-        isAnimating = true;
-        animateTo(-(currentSlide * 100));
+    carouselEl.addEventListener('touchend', e => {
+      if (!dragActive) return;
+      dragActive = false;
+      const diff = touchStartX - touchCurX;
+      if (axisLocked && Math.abs(diff) > 50) {
+        carouselMove(diff > 0 ? 1 : -1);
+      } else if (axisLocked) {
+        // horizontal drag started but didn't travel far enough — snap back
+        if (!isAnimating) {
+          isAnimating = true;
+          animateTo(-(currentSlide * 100));
+        }
+        resetAutoplay();
+      } else {
+        // plain tap (no horizontal drag) — don't set isAnimating so click events fire normally
+        resetAutoplay();
       }
-      resetAutoplay();
-    } else {
-      // plain tap (no horizontal drag) — don't set isAnimating so click events fire normally
-      resetAutoplay();
-    }
-    axisLocked = false;
-  });
+      axisLocked = false;
+    });
+  }
 
   // ── PAGE NAVIGATION ──
   function showPage(id) {
@@ -174,6 +178,7 @@
   // Lightbox (desktop)
   (function() {
     const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
     const lbImg    = document.getElementById('lightbox-img');
     const lbCap    = document.getElementById('lightbox-caption');
     const lbCount  = document.getElementById('lightbox-counter');

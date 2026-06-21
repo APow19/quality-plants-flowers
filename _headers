@@ -14,6 +14,25 @@
   Content-Security-Policy: frame-ancestors 'self'
   X-XSS-Protection: 0
 
+# New service landing pages — revalidate on every request, same as other HTML
+/weddings/*
+  Cache-Control: public, no-cache
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: frame-ancestors 'self'
+  X-XSS-Protection: 0
+
+/funerals/*
+  Cache-Control: public, no-cache
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: frame-ancestors 'self'
+  X-XSS-Protection: 0
+
+/corporate/*
+  Cache-Control: public, no-cache
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: frame-ancestors 'self'
+  X-XSS-Protection: 0
+
 # Versioned CSS & JS — cache aggressively (cache-bust via ?v= query string)
 /css/*
   Cache-Control: public, max-age=31536000, immutable
