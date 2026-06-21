@@ -1,23 +1,10 @@
-# Canonicalisation: force https + www so every variant resolves to one URL.
-# (Cache/security headers stay in _headers — this file only handles redirects.)
-
-[[redirects]]
-  from = "http://qualityplantsandflowers.com/*"
-  to = "https://www.qualityplantsandflowers.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://qualityplantsandflowers.com/*"
-  to = "https://www.qualityplantsandflowers.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "http://www.qualityplantsandflowers.com/*"
-  to = "https://www.qualityplantsandflowers.com/:splat"
-  status = 301
-  force = true
+# NOTE: www/https canonicalisation is NOT handled here. Netlify's own
+# Domain management settings already redirect apex<->www at the platform
+# level for this site, and that takes priority as currently configured —
+# adding host-level redirects here that assume the opposite direction
+# created an infinite www<->apex redirect loop that took the whole site
+# down. If www/https canonicalisation needs to change, do it in the
+# Netlify dashboard (Domain management > primary domain), not here.
 
 # Pretty-URL trailing slash — keep one canonical form per service page.
 [[redirects]]
