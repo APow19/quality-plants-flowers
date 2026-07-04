@@ -51,8 +51,8 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
-  <link rel="stylesheet" href="/css/styles.css?v=3" />
-  <script src="/js/script.js?v=3" defer></script>
+  <link rel="stylesheet" href="/css/styles.css?v=22" />
+  <script src="/js/script.js?v=22" defer></script>
 
   <!-- Service schema -->
   <script type="application/ld+json">
@@ -152,24 +152,50 @@
     <li><a href="/#gifts" onclick="closeMenu()">Gifts</a></li>
     <li><a href="/weddings/" onclick="closeMenu()">Weddings</a></li>
     <li><a href="/funerals/" aria-current="page" onclick="closeMenu()">Funerals</a></li>
-    <li><a href="/#occasions" onclick="closeMenu()">Occasions</a></li>
+    <li class="nav-dropdown">
+      <div class="nav-dropdown-row">
+        <a href="/#occasions" onclick="closeMenu()">Occasions</a>
+        <button type="button" class="nav-dropdown-caret" aria-haspopup="true" aria-expanded="false" aria-controls="occasionsSubmenu" aria-label="Show seasonal pages" onclick="toggleDropdown(this)"><svg class="nav-dropdown-caret-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <ul class="nav-dropdown-menu" id="occasionsSubmenu">
+        <li><a href="/valentines-day/" onclick="closeMenu()">Valentine's Day</a></li>
+        <li><a href="/mothers-day/" onclick="closeMenu()">Mother's Day</a></li>
+        <li><a href="/christmas/" onclick="closeMenu()">Christmas</a></li>
+      </ul>
+    </li>
     <li><a href="/corporate/" onclick="closeMenu()">Corporate</a></li>
-    <li><a href="/#about" onclick="closeMenu()">About</a></li>
-    <li><a href="/#gallery" onclick="closeMenu()">Gallery</a></li>
+    <li class="nav-dropdown">
+      <div class="nav-dropdown-row">
+        <a href="#" onclick="toggleDropdown(this.nextElementSibling); return false;">More</a>
+        <button type="button" class="nav-dropdown-caret" aria-haspopup="true" aria-expanded="false" aria-controls="moreSubmenu" aria-label="Show more links" onclick="toggleDropdown(this)"><svg class="nav-dropdown-caret-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <ul class="nav-dropdown-menu" id="moreSubmenu">
+        <li><a href="/#about" onclick="closeMenu()">About</a></li>
+        <li><a href="/#gallery" onclick="closeMenu()">Gallery</a></li>
+        <li><a href="/flower-notes/" onclick="closeMenu()">Flower Notes</a></li>
+      </ul>
+    </li>
     <li><a href="/#contact" onclick="closeMenu()" class="nav-cta">Get in Touch</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+    <span class="hamburger-label">Menu</span><span class="hamburger-bars"><span></span><span></span><span></span></span>
   </div>
 </nav>
 
 <main>
 
   <!-- HERO -->
-  <div class="page-header">
-    <p class="section-label">Sympathy &amp; Tribute · Huddersfield · Barnsley · HD8</p>
-    <h1>Funeral Flowers &amp; Sympathy Tributes in <em>Huddersfield, Barnsley &amp; HD8</em></h1>
-    <p>Gentle, dignified funeral tributes delivered with care to families across Huddersfield, Barnsley, Penistone, Holmfirth, Denby Dale and every HD8 village. Lynn handles every order with sensitivity and respect.</p>
+  <div class="page-hero page-hero--funerals">
+    <img src="/images/Casket_spray_rustic.webp" alt="Elegant white rose and eucalyptus casket spray on a rustic wooden table in a softly lit room" fetchpriority="high"/>
+    <div class="page-hero-content">
+      <p class="section-label">Sympathy &amp; Tribute · Huddersfield · Barnsley · HD8</p>
+      <h1>Funeral Flowers &amp; Sympathy Tributes in <em>Huddersfield, Barnsley &amp; HD8</em></h1>
+      <p>Gentle, dignified funeral tributes delivered with care to families across Huddersfield, Barnsley, Penistone, Holmfirth, Denby Dale and every HD8 village. Lynn handles every order with sensitivity and respect.</p>
+      <div class="btn-group">
+        <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#areas" class="btn btn-outline">See Areas We Cover</a>
+      </div>
+    </div>
   </div>
 
   <!-- INTRO -->
@@ -299,8 +325,12 @@
         <li><a href="/weddings/">Weddings</a></li>
         <li><a href="/funerals/">Funerals</a></li>
         <li><a href="/corporate/">Corporate</a></li>
+        <li><a href="/valentines-day/">Valentine's Day</a></li>
+        <li><a href="/mothers-day/">Mother's Day</a></li>
+        <li><a href="/christmas/">Christmas</a></li>
         <li><a href="/#gallery">Gallery</a></li>
         <li><a href="/#contact">Contact</a></li>
+        <li><a href="/flower-notes/">Flower Notes</a></li>
       </ul>
     </div>
     <div class="footer-col">

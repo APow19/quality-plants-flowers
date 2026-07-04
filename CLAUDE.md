@@ -2,7 +2,11 @@
 
 ## What this is
 Static HTML website for Quality Plants & Flowers, a family-run florist in Denby Dale, West Yorkshire.
-Single-page site (`index.html`) with anchor-based navigation to sections: weddings, occasions, funerals, corporate, gifts, gallery, about, contact.
+
+Three kinds of pages:
+- **`index.html`** — a single-page app (JS `showPage()` toggles `.page` sections) covering home, gifts, occasions, about, gallery, contact, plus lightweight in-page versions of funerals/corporate.
+- **Standalone SEO landing pages** — `/weddings/`, `/funerals/`, `/corporate/`, `/christmas/`, `/mothers-day/`, `/valentines-day/` — each its own static HTML file with unique `<title>`/meta/canonical/OG tags and Service + FAQPage schema. These exist for search-targeted local terms the homepage can't rank a single URL for. Weddings/Funerals/Corporate are permanent top-level nav links; Christmas/Mother's Day/Valentine's Day are seasonal and live in the nav's "Occasions" dropdown (see below).
+- **Flower Notes** — `/flower-notes/` — an evergreen articles section (index + one folder per article) for informational SEO content, separate from the seasonal/occasion pages. See its own section below.
 
 **Live URL:** https://www.qualityplantsandflowers.com
 **Canonical:** www prefix (all internal links and meta tags use `www.`)
@@ -12,24 +16,80 @@ Single-page site (`index.html`) with anchor-based navigation to sections: weddin
 - Fonts: Cormorant Garamond + Jost via Google Fonts
 - Analytics: Google Analytics 4 (`G-SS256YG8JS`)
 - Images: `.webp` format (with `.jpg` originals kept alongside some)
+- Shared `css/styles.css` and `js/script.js` are loaded by every page (homepage + all standalone pages) with a cache-busting `?v=N` query string (currently **v=22**) — bump the version number whenever either file changes so returning visitors don't serve a stale cached copy after deploy.
+- On the homepage, the `.occasion-item` quick-link strip and the wedding carousel slide's CTA now link straight to `/weddings/`, `/funerals/`, `/corporate/` rather than `showPage('weddings'|'funerals'|'corporate')` (the old lightweight in-page SPA sections) — those standalone pages are the fuller, canonical versions now. `Gifts` and `Occasions` still use `showPage(...)` since neither has a single standalone-page equivalent (Occasions fans out into the seasonal pages instead). If you add a homepage widget/CTA for something that already has a dedicated standalone page, link to the standalone page, not the old in-page section.
+- **The fixed header's height is measured at runtime, not hardcoded.** `updateHeaderHeight()` in `js/script.js` reads the delivery banner's actual `offsetHeight` (its text wraps to more than one line on narrow phones since it's long and `white-space: normal` on mobile — a fixed "banner + nav = 106px" guess broke every time the banner wrapped taller than assumed, which took several rounds to track down), positions `nav`'s `top` directly below it, and exposes the combined height as the CSS custom property `--header-height` on `:root`. Every page-content offset that needs to clear the fixed header (`.page` padding-top, `.page-hero`/`.page-header--standalone` margin-top, `.carousel`/`.contact-layout` height, the mobile nav-links panel) reads `var(--header-height, 106px)` — the `106px` is only a pre-JS/no-JS fallback. If a hero or header still looks clipped, check whether `updateHeaderHeight()` is actually running on that page (needs `.delivery-banner` and `#navbar` to both exist) before reaching for a bigger fallback number.
+- `.page-header` (plain text-only hero — H1 + optional intro, no photo) is used two ways: inside the homepage's `#gallery`/`#about` `.page` sections (which already get top clearance from `.page`'s own `padding-top`), and bare under `<main>` on every Flower Notes page (index + all 5 articles), which has no such wrapper. The Flower Notes usage needs the `.page-header--standalone` modifier class (`margin-top: var(--header-height, 106px)`) or the H1 sits just behind the fixed delivery-banner + nav — same root cause as the `.page-hero` margin-top fix, different component. If a new page ever uses bare `.page-header` under `<main>`, add this modifier.
+- The collapsed/mobile nav menu is centered, not left-aligned: `.nav-links.open > li { text-align: center; }` centers plain links, and `.nav-dropdown-row { justify-content: center; gap: 0.35rem; }` centers the "Occasions"/"More" label + chevron as a tight unit. This lives in both nav-collapse breakpoints (1300px and 768px) — keep them in sync if you touch one.
+- The hamburger nav toggle isn't a bare icon — it's `<span class="hamburger-label">Menu</span>` + `<span class="hamburger-bars">` (3 bar spans) side by side, so collapsed-nav users have a text cue, not just an icon. Keep both parts if you ever touch this markup. The label hides again below 480px (`.hamburger-label { display: none; }` in the SMALL PHONES block) since the nowrap brand name leaves too little room for it on the smallest phones.
+- **Nav top-level items are deliberately grouped to keep popular categories one click away**: Home, Gifts, Weddings, Funerals, the Occasions dropdown, Corporate, a "More" dropdown, and Get in Touch. About, Gallery, and Flower Notes (last, as requested) live inside "More" rather than as standalone top-level links — putting them inline as well was the direct cause of a nav that squashed/overflowed at ordinary laptop widths. Before adding another top-level (non-dropdown) nav item, consider whether it belongs in "More" instead, or the overflow problem comes back.
+- **"More" mirrors the "Occasions" dropdown structure exactly** (`.nav-dropdown` li → `.nav-dropdown-row` div → trigger `<a>` + `.nav-dropdown-caret` button → `.nav-dropdown-menu` submenu) specifically so the existing `toggleDropdown()`/`closeMenu()` JS (which looks for `.nav-dropdown-caret` to read/set `aria-expanded`) works unchanged. Don't restructure "More" to a single wrapping `<button>` without also updating that JS.
+- **Nav has two collapse breakpoints, not one**: `@media (max-width: 1300px)` switches `.nav-links` to the hamburger/mobile panel (this number assumes the grouped nav above — do the maths on total nav content width before adding another top-level item, or it'll squash again); `@media (max-width: 768px)` is the separate, older breakpoint for the full mobile layout reflow (single-column grids, mobile gallery slider, shrunk delivery banner, etc.) and still applies its own values on top for phones.
+- The dropdown caret (both "Occasions" and "More") is a small inline `<svg class="nav-dropdown-caret-icon">` chevron, not a Unicode arrow glyph (rendered inconsistently small) or a CSS border-corner trick (needed fiddly hand-tuned optical offsets and still looked off). Rotation is driven by `.nav-dropdown.open .nav-dropdown-caret-icon { transform: rotate(180deg) }` (JS-controlled, deterministic on touch); the `:hover`/`:focus-within` variants of that rule are scoped inside `@media (min-width: 1301px)` only, since `:hover` can persist inconsistently between separate dropdowns after a tap on touch devices — don't unscope that without re-testing on a real phone.
 
 ## File structure
 ```
-index.html              — main (and only) page
-css/styles.css          — all styles
-js/script.js            — all JavaScript
-images/                 — all site images (.webp)
-sitemap.xml             — submitted to Google Search Console
-robots.txt              — allows all, points to sitemap
-cookie-policy.html      — standalone cookie policy page
-privacy-policy.html     — standalone privacy policy page
+index.html                          — homepage SPA
+weddings/index.html                 — standalone wedding flowers landing page
+funerals/index.html                 — standalone funeral flowers landing page
+corporate/index.html                — standalone corporate flowers landing page
+christmas/index.html                — standalone Christmas landing page (seasonal, in Occasions dropdown)
+mothers-day/index.html              — standalone Mother's Day landing page (seasonal, in Occasions dropdown)
+valentines-day/index.html           — standalone Valentine's Day landing page (seasonal, in Occasions dropdown)
+flower-notes/index.html             — Flower Notes article index (card grid)
+flower-notes/<slug>/index.html      — one folder per article (5 currently — see Flower Notes section)
+css/styles.css                      — all styles (shared across every page)
+js/script.js                        — all JavaScript (shared across every page)
+images/                             — all site images in use (.webp)
+New Assets/                         — drop zone for newly supplied photos before they're
+                                       moved into images/ and wired into a page; should be
+                                       empty in steady state
+sitemap.xml                         — submitted to Google Search Console
+robots.txt                          — allows all, points to sitemap
+netlify.toml                        — trailing-slash redirects for each standalone page
+                                       (e.g. /corporate -> /corporate/) and each Flower
+                                       Notes article; add a matching entry whenever a new
+                                       standalone page or article is created
+cookie-policy.html                  — standalone cookie policy page
+privacy-policy.html                 — standalone privacy policy page
 ```
+
+## Standalone occasion pages (weddings/funerals/corporate/christmas/mothers-day/valentines-day)
+These six pages share one skeleton — don't invent a new layout, copy the closest existing page and adapt content:
+1. `<head>`: title + meta description (local + service keywords, no brand suffix), canonical, OG/Twitter tags, a `Service` JSON-LD block (with a `provider` object that repeats the Florist NAP and references `"@id": ".../#florist"` — this duplication is the site's established convention, not an oversight), and a `FAQPage` JSON-LD block mirroring the on-page FAQ.
+2. `<body>`: delivery banner → nav → hero → intro `.section` → 3–4 `.occ-section` (alternating `.occ-section--flip`) category blocks → `#areas` "Areas We Serve" `.features-grid` (same 13 HD8-area places on every page) → FAQ `.features-grid` (❓ icon) → CTA band (`background:var(--deep-green)`) → shared footer.
+   - **Hero**: all six pages use `.page-hero`/`.page-hero-content` — a full-bleed photo with a dark gradient overlay and white H1/intro/CTA buttons floating bottom-left. `.page-hero` has `margin-top: var(--header-height, 106px)` to clear the fixed delivery-banner + nav — **this must be `margin`, not `padding`**: the `<img>` is `position:absolute; inset:0`, which sizes relative to `.page-hero`'s own box and completely ignores that box's padding, so padding-top silently does nothing to move the image down (this was the actual cause of "the photo is cropped at the top" — the image sat directly behind the fixed header with no clearance at all). `min-height: max(50vh, 560px)` / `max(80vh, 620px)` from 769px up is a generous px floor, not just vh, since every page's H1 is long enough to wrap to 2-3 lines and vh alone isn't enough on real phone browsers (address-bar/toolbar chrome shrinks the visible viewport below its layout-viewport vh value). `overflow` is deliberately left `visible` (not `hidden`) so any future copy that's still too long overflows visibly instead of silently clipping. `.page-hero-content` is `max-width: 800px` (widened from 700px) to reduce wrapping on the longest headlines (Christmas's is the longest at ~80 characters). Each page also adds its own `.page-hero--<page>` modifier class purely to tune the photo's `object-position` (headroom/composition differs per shot) — see the comments above each in `css/styles.css`. When a photo has important subjects off-centre horizontally (not just vertically), check the crop on mobile separately from desktop: the hero's aspect ratio is much narrower relative to its height on a phone, so cover-cropping takes a much narrower horizontal slice than on a wide desktop window, and a horizontal position that looks fine on desktop can cut a subject out of frame entirely on mobile (see `.page-hero--mothers-day`'s mobile-only override). The plain text-only `.page-header` component still exists in the CSS but nothing currently uses it.
+- **Tuning object-position by eye is unreliable once there are competing subjects in frame** (e.g. two people, or a person plus a product). Pillow (`pip install Pillow` if not already present) can overlay a pixel-coordinate grid on the source image (see how `.page-hero--mothers-day`'s mobile crop was tuned) so you can read exact subject bounding boxes, and can render the *actual* proposed crop window as a preview PNG before touching CSS — much faster than iterating blind against user feedback.
+   - Hero photos must not duplicate an image already used as one of that same page's own category/`occ-section` cards further down the page.
+3. Cross-link back to the homepage's matching `#occasions`/`#gifts` teaser section, and from the homepage teaser back out to the full page (see the Christmas teaser block in `index.html` for the pattern).
+4. Seasonal pages (Christmas/Mother's Day/Valentine's Day) cross-link each other where natural (e.g. "planning ahead for Mother's Day?" links from the Christmas page) — Weddings/Funerals/Corporate don't need this since they're evergreen, not calendar-seasonal.
+
+### Nav "Occasions" dropdown (seasonal pages only — Christmas, Mother's Day, Valentine's Day)
+The nav's "Occasions" link is wrapped in `.nav-dropdown` (desktop: hover/focus-within reveals `.nav-dropdown-menu`; mobile: `.nav-dropdown-caret` button toggles an `.open` class for an accordion). Items are ordered by calendar date (Valentine's Day → Mother's Day → Christmas), not by when they were added. To add another seasonal page:
+1. Build the new standalone page following the recipe above.
+2. Add one `<li><a href="/new-page/">Name</a></li>` inside every page's `<ul class="nav-dropdown-menu" id="occasionsSubmenu">` — this block is duplicated in `index.html`, `weddings/`, `funerals/`, `corporate/`, `christmas/`, `mothers-day/`, `valentines-day/`, `flower-notes/` + every article, and the new page itself.
+3. Add the page to each footer's "Navigate" list, `sitemap.xml`, and `netlify.toml` (trailing-slash redirect).
+
+Weddings, Funerals, and Corporate are NOT in this dropdown — they're permanent top-level nav links since they aren't calendar-seasonal. Flower Notes lives inside the separate "More" dropdown (with About and Gallery), not this one — see the nav grouping note above.
+
+No CSS/JS changes needed for a new dropdown entry — the dropdown component already supports any number of items.
+
+## Flower Notes (`/flower-notes/`)
+An evergreen articles section for informational SEO — separate from the seasonal/occasion pages above, and intentionally not called "Blog" (the owner's preference).
+
+- **Index page** (`flower-notes/index.html`): `.blog-grid` of `.blog-card` items (image, meta line with date + read time, title, excerpt, "Read the guide →"). Add a new `<a class="blog-card">` entry here whenever a new article is published.
+- **Article template**: one folder per article at `flower-notes/<slug>/index.html`. Skeleton: delivery banner → nav (with `Flower Notes` marked `aria-current="page"`) → `.page-header` hero (H1 only, no intro paragraph) → `.breadcrumbs` nav (Home › Flower Notes › Article Title) → `.article-hero-img` → `.article-body` (meta line: byline "Lynn" + date + read time, then `<h2>`-sectioned body copy, a `.article-cta` box linking to the most relevant occasion/service page, then a "Related Reading" list linking 2 other articles) → shared footer.
+- **Schema**: `Article` JSON-LD (headline, description, image, datePublished/dateModified, `author` "Lynn", `publisher` referencing the `Florist` `@id`) + `BreadcrumbList` JSON-LD on every article. The index page itself carries no JSON-LD.
+- **Images**: prefer real existing photography from `images/` that genuinely matches the topic before reaching for anything else — all 5 current articles reuse existing site photos (e.g. `Red_poinsettia_Xmas.webp` for the poinsettia article). Only use a `<!-- LYNN: no matching image available for this section -->` placeholder comment if nothing fits.
+- CSS lives in the "FLOWER NOTES (blog)" block in `css/styles.css` (`.blog-grid`, `.blog-card`, `.article-body`, `.breadcrumbs`, `.article-cta`, etc).
+- New articles need: an entry on `flower-notes/index.html`, the article folder itself, a `sitemap.xml` entry, and a trailing-slash `netlify.toml` redirect.
 
 ## SEO setup
 - `robots` meta: `index, follow, max-image-preview:large`
-- Schema.org: `Florist` structured data with full address, geo, opening hours, phone
-- Open Graph + Twitter Card meta tags in place
-- Sitemap covers root + all anchor sections (`#weddings`, `#occasions`, etc.)
+- Homepage schema.org: `Florist` structured data (`@id` `.../#florist`) with full address, geo, opening hours, phone — the source of truth other pages' `Service` schema `provider` blocks reference by `@id`.
+- Each standalone occasion page adds its own `Service` + `FAQPage` schema (see above); each Flower Notes article adds `Article` + `BreadcrumbList` schema instead (see Flower Notes section).
+- Open Graph + Twitter Card meta tags in place on every page.
+- Sitemap covers the root, every standalone occasion page, and every Flower Notes page (index + articles); homepage anchor sections aren't listed individually.
 
 ## Important: www vs non-www
 The canonical tag and sitemap both use `www.qualityplantsandflowers.com`.
@@ -37,4 +97,4 @@ Google Search Console should be verified for the **www** property (or a Domain p
 If only the non-www property is set up in Search Console, the sitemap URLs will show as outside the verified property.
 
 ## Deployment
-Files are deployed directly to the web host (no CI/CD pipeline). Changes are made locally and uploaded manually.
+Files are deployed directly to the web host (no CI/CD pipeline). Changes are made locally and uploaded manually — the owner batches multiple changes into one upload rather than pushing after every edit, so don't assume a change is live until told otherwise.

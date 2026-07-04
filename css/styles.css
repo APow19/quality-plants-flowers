@@ -68,7 +68,7 @@
     .nav-logo span { color: var(--blush); }
 
     .nav-links {
-      display: flex; gap: 2.5rem; list-style: none; align-items: center;
+      display: flex; gap: 2.1rem; list-style: none; align-items: center;
     }
     .nav-links a {
       font-family: var(--font-body);
@@ -78,6 +78,7 @@
       text-transform: uppercase;
       color: var(--text);
       text-decoration: none;
+      white-space: nowrap;
       transition: color 0.2s;
       cursor: pointer;
     }
@@ -93,14 +94,109 @@
     .nav-cta:hover { background: var(--blush) !important; color: var(--cream) !important; }
 
     .hamburger {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+      display: none; align-items: center; gap: 0.6rem; cursor: pointer; padding: 4px;
     }
-    .hamburger span {
+    .hamburger-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
+    .hamburger-bars span {
       width: 24px; height: 1.5px; background: var(--deep-green); display: block; transition: 0.3s;
     }
 
+    /* ── NAV DROPDOWN (Occasions submenu) ──
+       Trigger link keeps its existing destination; the caret button reveals
+       a submenu of seasonal landing pages. Add more <li> items to
+       .nav-dropdown-menu as new seasonal pages are built — no other changes needed. */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-row { display: flex; align-items: center; gap: 0.3rem; }
+    /* Caret is a small inline SVG (not a Unicode glyph or a hand-tuned CSS
+       border-corner trick) — symmetric at any size, no optical-alignment
+       offsets needed. */
+    .nav-dropdown-caret {
+      background: none; border: none; padding: 6px; margin: 0; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--text);
+    }
+    .nav-dropdown-caret-icon {
+      display: block;
+      width: 10px; height: 6px;
+      transition: transform 0.2s;
+    }
+    /* The open/closed state is driven by the JS-toggled .open class only —
+       deterministic on every device. Hover/focus also flip it, but that's
+       scoped to desktop below, since :hover can get "stuck" inconsistently
+       between separate dropdowns after a tap on touch devices. */
+    .nav-dropdown.open .nav-dropdown-caret-icon { transform: rotate(180deg); }
+    @media (min-width: 1301px) {
+      .nav-dropdown:hover .nav-dropdown-caret-icon,
+      .nav-dropdown:focus-within .nav-dropdown-caret-icon { transform: rotate(180deg); }
+    }
+    .nav-dropdown-menu {
+      list-style: none; margin: 0; padding: 0.5rem 0;
+      position: absolute; top: 100%; left: 0; margin-top: 0.75rem;
+      min-width: 170px; background: var(--warm-white); border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      z-index: 150;
+    }
+    .nav-dropdown-menu a {
+      display: block; padding: 0.6rem 1.2rem; white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(0,0,0,0.03); }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+
+    /* ── NAV COLLAPSE (small laptops only) ──
+       Top-level items are grouped down to Home/Gifts/Weddings/Funerals/
+       Occasions-dropdown/Corporate/More-dropdown/Get in Touch (About, Gallery
+       and Flower Notes live inside "More" so the popular categories stay
+       directly clickable). That fits one row down to ~1300px; below that the
+       hamburger nav kicks in — well before the full mobile layout reflow in
+       the @media (max-width: 768px) block below, which still applies its own
+       (slightly different) values on top of this for phones. */
+    @media (max-width: 1300px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: var(--header-height, 106px); left: 0; right: 0;
+        background: var(--cream);
+        padding: 1.2rem 5%;
+        border-bottom: 1px solid var(--border);
+        gap: 1rem;
+        z-index: 99;
+        max-height: calc(100vh - var(--header-height, 106px));
+        overflow-y: auto;
+      }
+      .hamburger { display: flex; }
+      .nav-links.open > li { text-align: center; }
+      .nav-dropdown-row { justify-content: center; gap: 0.35rem; }
+      .nav-dropdown-caret { padding: 8px; }
+      .nav-dropdown-caret-icon { width: 12px; height: 7px; }
+      .nav-dropdown-menu {
+        position: static; margin: 0.3rem 0 0 0; padding: 0.15rem 0 0.15rem 1rem;
+        border: none; border-left: 2px solid var(--border); box-shadow: none;
+        background: transparent; opacity: 1; visibility: visible; transform: none;
+        max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+      }
+      .nav-dropdown.open .nav-dropdown-menu { max-height: 200px; }
+      .nav-dropdown-menu a { padding: 0.55rem 0 0.55rem 0.4rem; font-size: 0.72rem; color: var(--light-text); }
+    }
+
     /* ── PAGES ── */
-    .page { display: none; padding-top: 106px; min-height: 100vh; }
+    /* padding-top uses --header-height (set by updateHeaderHeight() in
+       script.js), not a fixed px value — the delivery banner's text can wrap
+       to more than one line on narrow phones, so its real height varies. The
+       106px fallback only applies before JS runs / if JS is disabled. */
+    .page { display: none; padding-top: var(--header-height, 106px); min-height: 100vh; }
     .page.active { display: block; }
 
     /* ══════════════════════════════════
@@ -108,7 +204,7 @@
     ══════════════════════════════════ */
     .carousel {
       position: relative;
-      height: calc(100vh - 106px);
+      height: calc(100vh - var(--header-height, 106px));
       overflow: hidden;
       touch-action: pan-y;
     }
@@ -135,6 +231,9 @@
       pointer-events: none;
       -webkit-user-drag: none;
     }
+    /* Bouquets in this photo sit in the lower half of the frame, below shelving —
+       shift the crop down so they stay in view on tall (portrait-ish) carousel heights. */
+    .slide-summer img { object-position: center 60%; }
     .carousel-slide::after {
       content: '';
       position: absolute; inset: 0;
@@ -255,6 +354,9 @@
       cursor: pointer;
       border-right: 1px solid rgba(255,255,255,0.08);
       transition: background 0.2s;
+      display: block;
+      color: #fff;
+      text-decoration: none;
     }
     .occasion-item:hover { background: rgba(255,255,255,0.08); }
     .occasion-item .oi { font-size: 1.5rem; margin-bottom: 0.4rem; display: block; }
@@ -368,32 +470,52 @@
     }
 
     /* ══════════════════════════════════
-       WEDDING PAGE
+       PAGE HERO (full-bleed image banner)
+       Shared by Weddings, Funerals, Christmas, Mother's Day and Valentine's
+       Day. Each page adds a .page-hero--<page> modifier purely to tune the
+       photo's object-position, since headroom/composition differs per shot.
     ══════════════════════════════════ */
-    .wedding-hero {
-      min-height: 60vh;
+    /* margin-top clears the fixed delivery-banner + nav, via --header-height
+       (set by updateHeaderHeight() in script.js — the banner's text can wrap
+       to more than one line on narrow phones, so its real height varies; the
+       106px fallback only applies before JS runs / if JS is disabled).
+       The hero's <img> is position:absolute; inset:0, which sizes relative to
+       this element's OWN box — padding-top would NOT have pushed it down
+       (absolutely-positioned children ignore their parent's padding), only
+       margin does. Without this, the top of every hero photo (and the top of
+       wrapped heading text, since overflow was hiding anything the box wasn't
+       tall enough for) sat permanently hidden behind the fixed header.
+       min-height has a generous px floor, not just a vh value — every page's
+       H1 is long enough to wrap to 2-3 lines on common widths. Real phone
+       browsers also shrink the visible viewport with address-bar/toolbar
+       chrome, so a vh-only value is smaller in practice than a desktop-style
+       test window would suggest. overflow is left as visible (not hidden) so
+       that if any future copy is still too long for this, it becomes visibly
+       obvious rather than silently clipped. */
+    .page-hero {
+      margin-top: var(--header-height, 106px);
+      min-height: max(50vh, 560px);
       position: relative;
       display: flex; align-items: flex-end;
       padding: 0 8% 4rem;
-      overflow: hidden;
     }
-    .wedding-hero img {
+    @media (min-width: 769px) {
+      .page-hero { min-height: max(80vh, 620px); }
+    }
+    .page-hero img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: center center;
     }
-    @media (max-width: 768px) {
-      .wedding-hero img { object-position: center 15%; }
-    }
-    .wedding-hero::after {
+    .page-hero::after {
       content:'';
       position: absolute; inset: 0;
       background: linear-gradient(rgba(15,25,15,0.35) 0%, rgba(15,25,15,0.55) 40%, rgba(15,25,15,0.72) 100%);
     }
-    .wedding-hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .wedding-hero-content .section-label { color: var(--gold); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
-    .wedding-hero-content h1 {
+    .page-hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .page-hero-content .section-label { color: var(--gold); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+    .page-hero-content h1 {
       font-family: var(--font-display);
       font-size: clamp(2.8rem, 5.5vw, 4.5rem);
       font-weight: 300;
@@ -402,14 +524,46 @@
       margin-bottom: 1rem;
       text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4);
     }
-    .wedding-hero-content h1 em { font-style: italic; color: #f2c9b0; }
-    .wedding-hero-content p {
+    .page-hero-content h1 em { font-style: italic; color: #f2c9b0; }
+    .page-hero-content p {
       color: rgba(255,255,255,0.92);
       max-width: 500px;
       line-height: 1.75;
       margin-bottom: 2rem;
       text-shadow: 0 1px 6px rgba(0,0,0,0.5);
     }
+
+    /* The bride's head sits close to the top of this photo with little headroom.
+       On wide desktop viewports the hero is much wider than the photo's own aspect
+       ratio, so cover-cropping pulls mostly from the top — keep this low so her
+       head never gets clipped; excess crops from the (less important) paving below. */
+    .page-hero--weddings img { object-position: center 5%; }
+    @media (max-width: 768px) {
+      .page-hero--weddings img { object-position: center 15%; }
+    }
+    /* Mum and child sit lower in frame with plenty of headroom above — keep the
+       crop a little above center so both faces stay in view on a wide banner. */
+    .page-hero--mothers-day img { object-position: center 35%; }
+    /* On mobile the hero box is much narrower relative to its height than on
+       desktop, so cover-cropping shows the photo's full height but only a
+       ~514px-wide horizontal slice of the 1376px-wide original — meaning the
+       Y value above has no effect at this width, only X matters. Checked
+       pixel coordinates directly (Pillow) rather than eyeballing: bouquet
+       spans x≈490-800, Mum's hand (with ring) x≈650-790, her face x≈730-910.
+       A window of x≈216-730 (object-position X ≈ 25%) keeps the child and
+       nearly all of the bouquet in frame, includes her hand, and stops just
+       before her face begins — verified against a real rendered crop, not
+       just calculated. */
+    @media (max-width: 768px) {
+      .page-hero--mothers-day img { object-position: 25% center; }
+    }
+    /* The wreath sits centred on the door; crop pulls slightly up so the snowy
+       pots at the very bottom (least important) are what gets trimmed first. */
+    .page-hero--christmas img { object-position: center 40%; }
+    /* The arrangement and reception desk sit in the lower half of this shot;
+       crop pulls down from center so the office ceiling (least important) is
+       what gets trimmed first on a wide, short banner. */
+    .page-hero--corporate img { object-position: center 65%; }
 
     /* Wedding intro strip */
     .wedding-intro {
@@ -679,6 +833,15 @@
       color: var(--deep-green);
     }
     .page-header p { color: var(--light-text); margin-top: 0.5rem; max-width: 500px; }
+    /* .page-header is used two ways: (1) inside the homepage's #gallery/#about
+       .page sections, which already get top clearance from .page's own
+       padding-top, and (2) bare under <main> on Flower Notes pages, which
+       have no such wrapper — those need this modifier to clear the fixed
+       delivery-banner + nav, via --header-height (same reasoning as
+       .page-hero's margin-top fix — the banner's real height varies since its
+       text can wrap on narrow phones, so a fixed px guess isn't reliable).
+       Without it the top of the H1 sits just behind the fixed header. */
+    .page-header--standalone { margin-top: var(--header-height, 106px); }
 
     .gallery-filters {
       display: flex; gap: 0.5rem; flex-wrap: wrap;
@@ -946,7 +1109,7 @@
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      min-height: calc(100vh - 106px);
+      min-height: calc(100vh - var(--header-height, 106px));
     }
     .contact-info {
       background: var(--deep-green);
@@ -1123,22 +1286,36 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
+      /* Banner text wraps here (white-space:normal + smaller font) rather than
+         truncating, so its height varies by device — nav's own top position and
+         every page-content offset get their real value from --header-height,
+         set by updateHeaderHeight() in script.js, not a fixed px guess. */
       .delivery-banner { font-size: 0.68rem; white-space: normal; overflow: hidden; }
-      nav { top: 28px; }
-      .page { padding-top: 100px; }
       .nav-links { display: none; }
       .nav-links.open {
         display: flex; flex-direction: column;
-        position: fixed; top: 100px; left: 0; right: 0;
+        position: fixed; top: var(--header-height, 106px); left: 0; right: 0;
         background: var(--cream);
         padding: 1.2rem 5%;
         border-bottom: 1px solid var(--border);
         gap: 1rem;
         z-index: 99;
-        max-height: calc(100vh - 100px);
+        max-height: calc(100vh - var(--header-height, 106px));
         overflow-y: auto;
       }
       .hamburger { display: flex; }
+      .nav-links.open > li { text-align: center; }
+      .nav-dropdown-row { justify-content: center; gap: 0.35rem; }
+      .nav-dropdown-caret { padding: 8px; }
+      .nav-dropdown-caret-icon { width: 12px; height: 7px; }
+      .nav-dropdown-menu {
+        position: static; margin: 0.3rem 0 0 0; padding: 0.15rem 0 0.15rem 1rem;
+        border: none; border-left: 2px solid var(--border); box-shadow: none;
+        background: transparent; opacity: 1; visibility: visible; transform: none;
+        max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+      }
+      .nav-dropdown.open .nav-dropdown-menu { max-height: 200px; }
+      .nav-dropdown-menu a { padding: 0.55rem 0 0.55rem 0.4rem; font-size: 0.72rem; color: var(--light-text); }
       .collection-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .col-item:first-child { grid-row: auto; grid-column: 1 / 3; height: 260px; }
       .about-body { grid-template-columns: 1fr; gap: 2rem; }
@@ -1221,6 +1398,10 @@
       .lynn-img { height: 300px; }
       .carousel { height: 56vh; min-height: 320px; }
       .carousel-slide img { object-position: center center; }
+      /* This photo's three bouquets span its full width, wider than a phone screen
+         can show at once. Rather than crop randomly into two of them, zoom in on
+         just the centre (hydrangea) bouquet so the crop looks deliberate. */
+      .slide-summer img { object-position: 53% 55%; transform: scale(1.55); }
       .carousel-arrow { width: 36px; height: 36px; font-size: 0.9rem; top: auto; bottom: 1rem; transform: none; }
       .carousel-arrow.prev { left: calc(50% - 72px); }
       .carousel-arrow.next { right: calc(50% - 72px); }
@@ -1234,12 +1415,76 @@
       .occasion-item { min-width: 100px; padding: 1rem 0.5rem; }
       .occasion-item .oi { font-size: 1.2rem; }
       .page-header { padding: 2.5rem 5% 1.5rem; }
-      .wedding-hero { min-height: max(50vh, 320px); }
-      .wedding-hero-content p { display: none; }
+      .page-hero-content p { display: none; }
     }
+
+    /* ── FLOWER NOTES (blog) ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
+    .blog-card-img { height: 220px; overflow: hidden; }
+    .blog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-body { padding: 1.8rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .blog-card-meta {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #96583A; margin-bottom: 0.7rem;
+    }
+    .blog-card h3 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 400;
+      color: var(--deep-green); line-height: 1.25; margin-bottom: 0.7rem;
+    }
+    .blog-card p { font-size: 0.9rem; color: var(--light-text); line-height: 1.7; flex: 1; }
+    .blog-card-readmore {
+      margin-top: 1.2rem; font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blush); font-weight: 500;
+    }
+
+    /* Article page */
+    .breadcrumbs {
+      max-width: 720px; margin: 0 auto; padding: 0 8%;
+      font-size: 0.8rem; color: var(--light-text);
+    }
+    .breadcrumbs a { color: var(--light-text); text-decoration: underline; }
+    .article-hero-img { width: 100%; max-height: 460px; object-fit: cover; }
+    .article-body { max-width: 720px; margin: 0 auto; padding: 0 8%; }
+    .article-meta {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      color: var(--light-text); font-size: 0.85rem; margin-bottom: 2rem;
+    }
+    .article-body h2 {
+      font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400; color: var(--deep-green); line-height: 1.25;
+      margin: 2.5rem 0 1rem;
+    }
+    .article-body p { color: var(--light-text); line-height: 1.9; font-size: 1rem; margin-bottom: 1.4rem; }
+    .article-body ul, .article-body ol { color: var(--light-text); line-height: 1.9; margin: 0 0 1.4rem 1.4rem; }
+    .article-body li { margin-bottom: 0.5rem; }
+    .article-cta {
+      margin-top: 3rem; padding: 2.5rem; background: var(--warm-white);
+      border: 1px solid var(--border); text-align: center;
+    }
+    .article-cta p { margin-bottom: 1.2rem; }
 
     /* ── SMALL PHONES ── */
     @media (max-width: 480px) {
+      /* The nowrap brand name ("Quality Plants & Flowers") plus a "Menu" label
+         gets tight on the smallest phones — drop the label here and keep just
+         the icon, which is a well-understood convention at this size anyway. */
+      .hamburger-label { display: none; }
       .delivery-banner { font-size: 0.62rem; padding: 0.4rem 0.6rem; }
       .carousel-text h1 { font-size: 2rem; }
       .carousel-text p { font-size: 0.88rem; }

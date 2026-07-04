@@ -166,6 +166,19 @@
   }
   function closeMenu() {
     document.getElementById('navLinks').classList.remove('open');
+    document.querySelectorAll('.nav-dropdown.open').forEach(function(li) {
+      li.classList.remove('open');
+      var caret = li.querySelector('.nav-dropdown-caret');
+      if (caret) caret.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Nav dropdown (e.g. "Occasions" submenu) — click/tap toggle for touch &
+  // mouse users; desktop also opens on hover/focus via CSS.
+  function toggleDropdown(btn) {
+    var li = btn.closest('.nav-dropdown');
+    var isOpen = li.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
 
   // Navbar scroll effect
@@ -365,4 +378,25 @@
     }, { threshold: 0.1 });
     els.forEach(el => obs.observe(el));
   }
+
+  // ── Header height (delivery banner + nav) ──
+  // The delivery banner's text can wrap to more than one line on narrow
+  // phones, making its real rendered height taller than any single guessed
+  // pixel value — a hardcoded "banner + nav = 106px" assumption breaks
+  // whenever the banner wraps. Measure the banner directly instead: position
+  // nav right below it, and expose the true combined height as --header-height
+  // so every page-content offset that needs to clear the fixed header stays
+  // correct regardless of how the banner wraps on a given device/zoom level.
+  function updateHeaderHeight() {
+    const banner = document.querySelector('.delivery-banner');
+    const navEl = document.getElementById('navbar');
+    if (!banner || !navEl) return;
+    const bannerHeight = banner.offsetHeight;
+    navEl.style.top = bannerHeight + 'px';
+    const totalHeight = bannerHeight + navEl.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', totalHeight + 'px');
+  }
+  updateHeaderHeight();
+  window.addEventListener('resize', updateHeaderHeight);
+  window.addEventListener('load', updateHeaderHeight); // fonts/images can still change banner height after first paint
   observeFadeUps();

@@ -51,8 +51,8 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
-  <link rel="stylesheet" href="css/styles.css?v=3" />
-  <script src="js/script.js?v=3" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=22" />
+  <script src="js/script.js?v=22" defer></script>
 
   <script type="application/ld+json">
   {
@@ -81,15 +81,21 @@
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "dayOfWeek": ["Tuesday", "Thursday", "Friday"],
         "opens": "09:00",
         "closes": "17:00"
       },
       {
         "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "09:00",
+        "closes": "14:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Saturday",
         "opens": "09:00",
-        "closes": "15:00"
+        "closes": "16:00"
       }
     ],
     "areaServed": [
@@ -127,14 +133,33 @@
     <li><a href="#gifts" onclick="showPage('gifts');closeMenu();return false;">Gifts</a></li>
     <li><a href="/weddings/" onclick="closeMenu()">Weddings</a></li>
     <li><a href="/funerals/" onclick="closeMenu()">Funerals</a></li>
-    <li><a href="#occasions" onclick="showPage('occasions');closeMenu();return false;">Occasions</a></li>
+    <li class="nav-dropdown">
+      <div class="nav-dropdown-row">
+        <a href="#occasions" onclick="showPage('occasions');closeMenu();return false;">Occasions</a>
+        <button type="button" class="nav-dropdown-caret" aria-haspopup="true" aria-expanded="false" aria-controls="occasionsSubmenu" aria-label="Show seasonal pages" onclick="toggleDropdown(this)"><svg class="nav-dropdown-caret-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <ul class="nav-dropdown-menu" id="occasionsSubmenu">
+        <li><a href="/valentines-day/" onclick="closeMenu()">Valentine's Day</a></li>
+        <li><a href="/mothers-day/" onclick="closeMenu()">Mother's Day</a></li>
+        <li><a href="/christmas/" onclick="closeMenu()">Christmas</a></li>
+      </ul>
+    </li>
     <li><a href="/corporate/" onclick="closeMenu()">Corporate</a></li>
-    <li><a href="#about" onclick="showPage('about');closeMenu();return false;">About</a></li>
-    <li><a href="#gallery" onclick="showPage('gallery');closeMenu();return false;">Gallery</a></li>
+    <li class="nav-dropdown">
+      <div class="nav-dropdown-row">
+        <a href="#" onclick="toggleDropdown(this.nextElementSibling); return false;">More</a>
+        <button type="button" class="nav-dropdown-caret" aria-haspopup="true" aria-expanded="false" aria-controls="moreSubmenu" aria-label="Show more links" onclick="toggleDropdown(this)"><svg class="nav-dropdown-caret-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <ul class="nav-dropdown-menu" id="moreSubmenu">
+        <li><a href="#about" onclick="showPage('about');closeMenu();return false;">About</a></li>
+        <li><a href="#gallery" onclick="showPage('gallery');closeMenu();return false;">Gallery</a></li>
+        <li><a href="/flower-notes/" onclick="closeMenu()">Flower Notes</a></li>
+      </ul>
+    </li>
     <li><a href="#contact" onclick="showPage('contact');closeMenu();return false;" class="nav-cta">Get in Touch</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+    <span class="hamburger-label">Menu</span><span class="hamburger-bars"><span></span><span></span><span></span></span>
   </div>
 </nav>
 
@@ -175,7 +200,7 @@
             <h1>Your Perfect <em>Wedding Day</em> Deserves Perfect Flowers</h1>
             <p>From stunning bridal bouquets to beautiful buttonholes, Lynn creates wedding flowers that you'll cherish forever. Lovingly handcrafted just for you.</p>
             <div class="btn-group">
-              <button class="btn btn-primary" onclick="showPage('weddings')">Explore Weddings</button>
+              <a class="btn btn-primary" href="/weddings/">Explore Weddings</a>
               <button class="btn btn-outline" onclick="showPageForm('contact')">Book a Consultation</button>
             </div>
           </div>
@@ -183,8 +208,8 @@
       </div>
 
       <!-- Slide 3 -->
-      <div class="carousel-slide">
-        <img src="images/Seasonal_Bunches.webp" alt="Seasonal flower bouquet, Quality Plants and Flowers, Denby Dale florist"/>
+      <div class="carousel-slide slide-summer">
+        <img src="images/Seasonal_Summer.webp" alt="Seasonal summer flower bouquet, Quality Plants and Flowers, Denby Dale florist"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Fresh · Seasonal · Locally Loved</p>
@@ -217,22 +242,22 @@
       <span class="oi">🌿</span>
       <span>Gifts</span>
     </div>
-    <div class="occasion-item" onclick="showPage('weddings')">
+    <a class="occasion-item" href="/weddings/">
       <span class="oi">💍</span>
       <span>Weddings</span>
-    </div>
-    <div class="occasion-item" onclick="showPage('funerals')">
+    </a>
+    <a class="occasion-item" href="/funerals/">
       <span class="oi">🕊️</span>
       <span>Funerals</span>
-    </div>
+    </a>
     <div class="occasion-item" onclick="showPage('occasions')">
       <span class="oi">🌸</span>
       <span>Occasions</span>
     </div>
-    <div class="occasion-item" onclick="showPage('corporate')">
+    <a class="occasion-item" href="/corporate/">
       <span class="oi">🏢</span>
       <span>Corporate</span>
-    </div>
+    </a>
   </div>
 
   <section class="section fade-up">
@@ -266,6 +291,13 @@
   <section class="testimonial-section">
     <blockquote>"The flowers for our wedding were beyond anything we could have imagined. Every guest stopped to admire them. Quality Plants &amp; Flowers made our day truly magical."</blockquote>
     <cite>— Sarah &amp; James, Wedding Clients · Denby Dale</cite>
+  </section>
+
+  <section class="section fade-up" style="text-align:center">
+    <p class="section-label">Flower Notes</p>
+    <h2 class="section-title">Read our latest <em>flower &amp; plant care tips</em></h2>
+    <p style="max-width:600px;margin:0 auto 2rem;color:var(--light-text);line-height:1.85">From making cut flowers last longer to choosing wedding flowers by season, Lynn shares what she's learned from over 20 years behind the counter.</p>
+    <a href="/flower-notes/" class="btn btn-primary">Read Flower Notes</a>
   </section>
 
 </div>
@@ -718,6 +750,7 @@
       <p class="section-label">Mother's Day</p>
       <h2>Show Her <em>How Much She Means</em></h2>
       <p>Nothing expresses love quite like a hand-crafted bouquet made just for her. Lynn creates beautiful Mother's Day arrangements she'll treasure long after the day itself. Order early to avoid disappointment — our Mother's Day flowers always sell out fast.</p>
+      <p style="font-size:0.88rem"><a href="/mothers-day/" style="color:var(--blush);font-weight:500;text-decoration:underline;">See our full Mother's Day flowers &amp; gifts service &rarr;</a></p>
       <button class="btn btn-primary" onclick="showPageForm('contact')">Order Now</button>
     </div>
   </div>
@@ -731,6 +764,7 @@
       <p class="section-label">Valentine's Day</p>
       <h2>Say It <em>With Flowers</em></h2>
       <p>Classic red roses or something completely unique — Lynn will help you find the perfect way to express your love. From romantic single stems to lavish bouquets, we make Valentine's Day truly special for the people who matter most.</p>
+      <p style="font-size:0.88rem"><a href="/valentines-day/" style="color:var(--blush);font-weight:500;text-decoration:underline;">See our full Valentine's Day flowers &amp; gifts service &rarr;</a></p>
       <button class="btn btn-primary" onclick="showPageForm('contact')">Order Now</button>
     </div>
   </div>
@@ -744,6 +778,7 @@
       <p class="section-label">Christmas</p>
       <h2>Deck the Halls with <em>Beautiful Blooms</em></h2>
       <p>From festive wreaths and table centrepieces to gift bouquets and poinsettias, we bring the magic of Christmas to life with our seasonal floral creations. Perfect for decorating your home or gifting to someone you love.</p>
+      <p style="font-size:0.88rem"><a href="/christmas/" style="color:var(--blush);font-weight:500;text-decoration:underline;">See our full Christmas flowers &amp; wreaths service &rarr;</a></p>
       <button class="btn btn-primary" onclick="showPageForm('contact')">Order Now</button>
     </div>
   </div>
@@ -874,6 +909,7 @@
       <p class="section-label">Corporate Gifting</p>
       <h2>Flowers as <em>Business Gifts</em></h2>
       <p>Reward your team, thank a client, or celebrate a milestone with a beautifully arranged bouquet or plant. We can handle bulk orders and can include personalised notes or branded packaging — just ask and we'll do our best to help.</p>
+      <p style="font-size:0.88rem"><a href="/christmas/" style="color:var(--blush);font-weight:500;text-decoration:underline;">Planning festive client &amp; staff gifts? See our Christmas flowers &amp; wreaths &rarr;</a></p>
       <button class="btn btn-primary" onclick="showPageForm('contact')">Get in Touch</button>
     </div>
   </div>
@@ -935,7 +971,7 @@
   <!-- Seasonal Bunches -->
   <div class="occ-section occ-section--flip">
     <div class="occ-section-img">
-      <img loading="lazy" src="images/Seasonal_Bunches.webp" alt="Seasonal flower bunches"/>
+      <img loading="lazy" src="images/Seasonal_Summer.webp" alt="Seasonal summer flower bunches"/>
     </div>
     <div class="occ-section-text">
       <p class="section-label">Seasonal Bunches</p>
@@ -991,7 +1027,7 @@
         <div class="cd-icon">🕐</div>
         <div class="contact-detail-text">
           <strong>Opening Hours</strong>
-          <span>Tue–Fri: 9am – 5pm<br>Saturday: 9am – 3pm<br>Sun &amp; Mon: Closed</span>
+          <span>Monday: Closed<br>Tuesday: 9am – 5pm<br>Wednesday: 9am – 2pm<br>Thursday: 9am – 5pm<br>Friday: 9am – 5pm<br>Saturday: 9am – 4pm<br>Sunday: Closed</span>
         </div>
       </div>
       <div class="contact-detail">
@@ -1005,7 +1041,7 @@
       <!-- Google Maps embed -->
       <div class="map-container">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2360.3887!2d-1.7162!3d53.5643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s373+Wakefield+Road%2C+Denby+Dale%2C+HD8+8RP!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.176519735585!2d-1.660805423254521!3d53.57246617235568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bd940da49fe7d%3A0x92fc4ea2aca3270d!2sQuality%20plants%20and%20flowers!5e0!3m2!1sen!2suk!4v1783024296066!5m2!1sen!2suk"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -1097,8 +1133,12 @@
         <li><a href="/weddings/">Weddings</a></li>
         <li><a href="/funerals/">Funerals</a></li>
         <li><a href="/corporate/">Corporate</a></li>
+        <li><a href="/valentines-day/">Valentine's Day</a></li>
+        <li><a href="/mothers-day/">Mother's Day</a></li>
+        <li><a href="/christmas/">Christmas</a></li>
         <li><a href="#gallery" onclick="showPage('gallery');return false;">Gallery</a></li>
         <li><a href="#contact" onclick="showPage('contact');return false;">Contact</a></li>
+        <li><a href="/flower-notes/">Flower Notes</a></li>
       </ul>
     </div>
     <div class="footer-col">

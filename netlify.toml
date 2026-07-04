@@ -21,3 +21,48 @@
   from = "/corporate"
   to = "/corporate/"
   status = 301
+
+[[redirects]]
+  from = "/flower-notes"
+  to = "/flower-notes/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/how-to-make-cut-flowers-last-longer"
+  to = "/flower-notes/how-to-make-cut-flowers-last-longer/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/how-to-care-for-your-poinsettia-this-christmas"
+  to = "/flower-notes/how-to-care-for-your-poinsettia-this-christmas/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/wedding-flowers-by-season"
+  to = "/flower-notes/wedding-flowers-by-season/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/funeral-flower-etiquette"
+  to = "/flower-notes/funeral-flower-etiquette/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/houseplant-care-for-beginners"
+  to = "/flower-notes/houseplant-care-for-beginners/"
+  status = 301
+
+[[redirects]]
+  from = "/valentines-day"
+  to = "/valentines-day/"
+  status = 301
+
+[[redirects]]
+  from = "/mothers-day"
+  to = "/mothers-day/"
+  status = 301
+
+[[redirects]]
+  from = "/christmas"
+  to = "/christmas/"
+  status = 301
