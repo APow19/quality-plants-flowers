@@ -51,8 +51,8 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
-  <link rel="stylesheet" href="css/styles.css?v=22" />
-  <script src="js/script.js?v=22" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <script src="js/script.js?v=26" defer></script>
 
   <script type="application/ld+json">
   {
@@ -573,6 +573,10 @@
   <div class="gallery-filters">
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="weddings">Weddings</button>
+    <button class="filter-btn" data-filter="gifts">Gifts</button>
+    <button class="filter-btn" data-filter="plants">Plants</button>
+    <button class="filter-btn" data-filter="sympathy">Sympathy</button>
+    <button class="filter-btn" data-filter="occasions">Occasions</button>
   </div>
 
   <p class="swipe-hint"><span class="swipe-arrow">&#8592;</span> Swipe to browse <span class="swipe-arrow">&#8594;</span></p>
@@ -592,7 +596,7 @@
       <img loading="lazy" src="images/Table_centerpiece.webp" alt="Floral table centrepiece for weddings and events"/>
       <div class="gallery-caption"><span>Events</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/Roses.webp" alt="Fresh red roses gift arrangement, delivery to Huddersfield and Barnsley"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
@@ -609,7 +613,7 @@
       <img loading="lazy" src="images/Brides.webp" alt="Brides with bouquets by Quality Plants and Flowers, wedding florist near Huddersfield"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/PurpleFlowers.webp" alt="Purple flower arrangement"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
@@ -621,15 +625,15 @@
       <img loading="lazy" src="images/Bridesmaids_flowers.webp" alt="Bridesmaid flowers"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/Flowers_HandTied.webp" alt="Hand-tied bouquet"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/Box_of_flowers.webp" alt="Box of flowers gift arrangement"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/Thank_you_flowers.webp" alt="Thank you flower arrangement"/>
       <div class="gallery-caption"><span>Gifts</span></div>
     </div>
@@ -665,51 +669,51 @@
       <img loading="lazy" src="images/package_table_flowers.jpg" alt="Wedding table flowers"/>
       <div class="gallery-caption"><span>Weddings</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Casket_spray.webp" alt="Funeral casket spray"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Sympathy_flowers.webp" alt="Sympathy flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Memorial_flowers.webp" alt="Memorial flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Arrangement_1.webp" alt="White rose and chrysanthemum funeral posy tribute by Quality Plants and Flowers, Denby Dale"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Arrangement_2.webp" alt="Mixed colour funeral posy with pink roses, gerberas and chrysanthemums by Quality Plants and Flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Arrangement_3.webp" alt="White lily, rose and lisianthus funeral tribute in a wooden crate by Quality Plants and Flowers, Denby Dale"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/casket_spray1.webp" alt="Pink rose and white lily casket spray funeral tribute by Quality Plants and Flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Casket_Spray2.webp" alt="Colourful casket spray with orange, yellow and red flowers by Quality Plants and Flowers, Denby Dale"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Coffin_Top.webp" alt="White heart-shaped funeral tribute with yellow roses by Quality Plants and Flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Coffin_Top2.webp" alt="Yellow rose open heart funeral wreath tribute by Quality Plants and Flowers, Denby Dale florist"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Funeral_Dad.webp" alt="DAD funeral letter tribute in white chrysanthemums and blue roses by Quality Plants and Flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="sympathy">
       <img loading="lazy" src="images/Mum_Arrangement.webp" alt="MUM funeral letter tribute in white chrysanthemums with colourful flowers by Quality Plants and Flowers"/>
       <div class="gallery-caption"><span>Sympathy</span></div>
     </div>
@@ -721,9 +725,217 @@
       <img loading="lazy" src="images/Flower_arrangement_office_rec.webp" alt="Office reception flower arrangement"/>
       <div class="gallery-caption"><span>Events</span></div>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" data-category="gifts">
       <img loading="lazy" src="images/Corporate_gifting.webp" alt="Corporate gifting flowers"/>
       <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="weddings">
+      <img loading="lazy" src="images/BridesBouquet_Wedding.webp" alt="White rose bridal bouquet with eucalyptus and stephanotis, tied with ivory ribbon"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="weddings">
+      <img loading="lazy" src="images/ButtonholeBlue_Weddings.webp" alt="Blue and white wedding buttonhole with lavender sprigs"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="weddings">
+      <img loading="lazy" src="images/ButtonHoles_Wedding.webp" alt="Row of pink carnation buttonholes with gypsophila for the groomsmen"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="weddings">
+      <img loading="lazy" src="images/RoseArrangement_Weddings.webp" alt="Ivory rose and stephanotis wedding table arrangement"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="weddings">
+      <img loading="lazy" src="images/Roses_ButtonHoles2_Weddings.webp" alt="Single red rose buttonhole beside a matching bridesmaid posy"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/Roses_ButtonHoles_Weddings.webp" alt="Red rose buttonhole and matching wrist posy with eucalyptus"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/Rose_Bouquet_Weddings.webp" alt="Red and white rose wedding centrepiece with eucalyptus foliage"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/Wedding_Bracelet_Weddings.webp" alt="Pink rose wrist corsage with a pearl bracelet"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item" data-category="weddings">
+      <img loading="lazy" src="images/Wedding_Flower_Bracelets.webp" alt="Trio of ivory rose wrist corsages with pearl bands for bridesmaids"/>
+      <div class="gallery-caption"><span>Weddings</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BasketArrangement_Gifts.webp" alt="Wicker basket flower arrangement with yellow roses and white chrysanthemums"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BasketOfFlowers_Gifts.webp" alt="Foliage-rich basket arrangement with white flowers and purple accents"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BouquetArrangement_Gifts.webp" alt="White and green bouquet with lilies and chrysanthemums in black wrap"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item" data-category="gifts">
+      <img loading="lazy" src="images/Bouquet_Gifts.webp" alt="Hand-tied bouquet with purple hydrangea, agapanthus and pink chrysanthemums"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement_Gifts.webp" alt="Pink gerbera and chrysanthemum box arrangement in a wooden crate"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement2_Gifts.webp" alt="Pastel box arrangement with pink and white daisies and roses"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement3_Gifts.webp" alt="Rustic kraft box arrangement with pink roses and lisianthus"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement4_Gifts.webp" alt="White and green box arrangement with anthurium and a teal ribbon bow"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement5_Gifts.webp" alt="Pink box arrangement with roses, carnations and gerbera daisies"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement6_Gifts.webp" alt="Rustic box arrangement with white hydrangea and blue cornflower"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement7_Gifts.webp" alt="White and purple box arrangement with hydrangea and lilies"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement8_Gifts.webp" alt="Autumn-toned box arrangement with white chrysanthemum and blue cornflower"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement9_Gifts.webp" alt="Bold box arrangement with orange gerbera and blue cornflower"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement10_Gifts.webp" alt="Pastel box arrangement with green hydrangea, yellow gerbera and a butterfly pick"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement11_Gifts.webp" alt="Bright box arrangement with red roses and pink chrysanthemums"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement12_Gifts.webp" alt="Purple and plum box arrangement with chrysanthemums and a succulent"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement13_Gifts.webp" alt="Soft cream and white box arrangement with roses and gerbera"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement14_Gifts.webp" alt="Vibrant mixed box arrangement with yellow gerbera and purple carnations"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement15_Gifts.webp" alt="Colourful potted kalanchoe plant gift in a woven basket"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangement16_Gifts.webp" alt="Mixed seasonal box arrangement with alstroemeria, carnations and roses"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/BoxArrangementPink_Gifts.webp" alt="Bright box arrangement with orange gerbera, pink roses and yellow chrysanthemum"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item" data-category="gifts">
+      <img loading="lazy" src="images/MultipleBoxes_Gift.webp" alt="Range of box arrangement gifts in six different colour palettes"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item" data-category="gifts">
+      <img loading="lazy" src="images/PotArrangement_Gifts.webp" alt="Red and white flower arrangement in a lilac ceramic pot"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="gifts">
+      <img loading="lazy" src="images/RosesBox_Gift.webp" alt="Red rose bouquet gift box with a red ribbon bow"/>
+      <div class="gallery-caption"><span>Gifts</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/CyclamenPot_Plants.webp" alt="Pink cyclamen plant in a decorative patterned pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/Fern_WovenPot_Plants.webp" alt="Boston fern plant in a green woven pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/Hedgehog_Plant_Plants.webp" alt="Sempervivum succulents planted in a novelty hedgehog pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/OrangePot_Plants.webp" alt="Red flowering kalanchoe plant in an orange ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/PotArrangement_Plants.webp" alt="Pink dianthus plant in a patterned ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/SmallCacus_Plants.webp" alt="Spiky cactus plant in a green ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/StrawberryPot_Plants.webp" alt="Succulent plant in a strawberry-decorated ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/TropicalPlant_Plants.webp" alt="Parlour palm plant in a white ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/WateringCan_Plants.webp" alt="Succulent plant in a floral watering-can style pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/YellowPot_Plants.webp" alt="Colourful mixed flower plant in a yellow ceramic pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="plants">
+      <img loading="lazy" src="images/Yuka_Plant_Plants.webp" alt="Yucca plant in a floral patterned pot"/>
+      <div class="gallery-caption"><span>Plants</span></div>
+    </div>
+    <div class="gallery-item" data-category="sympathy">
+      <img loading="lazy" src="images/Arrangement_Sympathy.webp" alt="Vibrant funeral tribute with magenta carnations, yellow gerbera and white chrysanthemums"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="sympathy">
+      <img loading="lazy" src="images/Arrangement2_Sympathy.webp" alt="Soft pastel funeral tribute with peach roses and a memorial candle"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item" data-category="sympathy">
+      <img loading="lazy" src="images/Arrangement3_Sympathy.webp" alt="Autumn-toned funeral tribute with orange chrysanthemums and red gerbera"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item" data-category="sympathy">
+      <img loading="lazy" src="images/Arrangement4_Sympathy.webp" alt="Pair of matching pastel funeral posy tributes with cornflowers and carnations"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="sympathy">
+      <img loading="lazy" src="images/Wreath_Sympathy.webp" alt="Pastel flower sympathy wreath displayed on a front door"/>
+      <div class="gallery-caption"><span>Sympathy</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="occasions">
+      <img loading="lazy" src="images/PromBracelets_Occasions.webp" alt="Red and blue flower wrist corsages worn for a prom night"/>
+      <div class="gallery-caption"><span>Occasions</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="occasions">
+      <img loading="lazy" src="images/Prom_Bracelet_Blue_Occasions.webp" alt="Blue flower prom wrist corsage with a pearl band, gift boxed"/>
+      <div class="gallery-caption"><span>Occasions</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="occasions">
+      <img loading="lazy" src="images/Prom_Bracelet_Red_Occasions.webp" alt="Red flower prom wrist corsage with a pearl band, gift boxed"/>
+      <div class="gallery-caption"><span>Occasions</span></div>
     </div>
   </div>
   <div class="gallery-slider-controls">

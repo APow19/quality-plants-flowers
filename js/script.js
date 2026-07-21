@@ -196,6 +196,7 @@
         const show = filter === 'all' || item.dataset.category === filter;
         item.style.display = show ? '' : 'none';
       });
+      if (window.refreshGallerySlider) window.refreshGallerySlider();
     });
   });
 
@@ -278,7 +279,10 @@
     });
   })();
 
-  // Gallery slider (mobile)
+  // Gallery slider (mobile) — dots/count rebuild via window.refreshGallerySlider()
+  // whenever the filter chips above the reel change the set of visible items
+  // (see "Gallery filters" above), since a fixed dot count would drift out of
+  // sync with how many slides are actually left in the reel after filtering.
   (function() {
     const grid = document.querySelector('.gallery-grid');
     const dotsContainer = document.querySelector('.gallery-dots');
@@ -286,19 +290,29 @@
     const nextBtn = document.querySelector('.gallery-next');
     if (!grid || !dotsContainer) return;
 
-    const items = grid.querySelectorAll('.gallery-item');
-    const total = items.length;
+    let total = 0;
 
-    items.forEach(function(_, i) {
-      const dot = document.createElement('button');
-      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      dot.addEventListener('click', function() { scrollToSlide(i); });
-      dotsContainer.appendChild(dot);
-    });
+    function visibleItems() {
+      return [...grid.querySelectorAll('.gallery-item')].filter(function(el) {
+        return el.style.display !== 'none';
+      });
+    }
+
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      const items = visibleItems();
+      total = items.length;
+      items.forEach(function(_, i) {
+        const dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function() { scrollToSlide(i); });
+        dotsContainer.appendChild(dot);
+      });
+    }
 
     function getCurrentIndex() {
-      return Math.round(grid.scrollLeft / grid.offsetWidth);
+      return grid.offsetWidth ? Math.round(grid.scrollLeft / grid.offsetWidth) : 0;
     }
 
     function updateActiveDot() {
@@ -311,6 +325,13 @@
     function scrollToSlide(index) {
       grid.scrollTo({ left: index * grid.offsetWidth, behavior: 'smooth' });
     }
+
+    buildDots();
+
+    window.refreshGallerySlider = function() {
+      buildDots();
+      grid.scrollTo({ left: 0, behavior: 'auto' });
+    };
 
     grid.addEventListener('scroll', updateActiveDot, { passive: true });
 

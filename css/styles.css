@@ -498,6 +498,12 @@
       position: relative;
       display: flex; align-items: flex-end;
       padding: 0 8% 4rem;
+      /* Matches the dark tone of .page-hero::after's gradient overlay below,
+         so on a slow connection the moment before the photo paints reads as
+         a plain dark-green panel (the overlay is on top regardless of
+         whether the img has loaded) instead of the gradient sitting on the
+         page's white background, which looked like a jarring grey flash. */
+      background-color: var(--deep-green);
     }
     @media (min-width: 769px) {
       .page-hero { min-height: max(80vh, 620px); }
@@ -1323,6 +1329,13 @@
       .gallery-grid {
         columns: unset;
         display: flex;
+        /* Flex items default to align-items: stretch, which would size
+           every slide's box to match the tallest sibling in the row (the
+           133vw .gallery-item--portrait ones) — landscape slides (72vw)
+           would then sit in a box ~60vw taller than their own image,
+           showing as empty space underneath. flex-start lets each slide's
+           box size to its own image instead. */
+        align-items: flex-start;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
@@ -1332,7 +1345,27 @@
       }
       .gallery-grid::-webkit-scrollbar { display: none; }
       .gallery-item::before { display: none; }
-      .gallery-filters { display: none; }
+      /* Filters stay visible on mobile as a horizontally-scrollable chip row
+         above the reel (rather than the desktop wrapping row) since there
+         are now 6 buttons (All/Weddings/Gifts/Plants/Sympathy/Occasions) —
+         too many to wrap onto a narrow screen without pushing the gallery
+         down. js/script.js rebuilds the reel's dots/scroll position via
+         window.refreshGallerySlider() whenever a filter changes so the two
+         swipeable rows (chips + reel) don't fight each other. */
+      .gallery-filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 1.2rem 5% 0.75rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .gallery-filters::-webkit-scrollbar { display: none; }
+      .gallery-filters .filter-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 0.68rem;
+        padding: 0.45rem 0.9rem;
+      }
       .swipe-hint {
         display: block;
         text-align: center;
@@ -1352,6 +1385,18 @@
         scroll-snap-align: start;
       }
       .gallery-item img { height: 72vw; object-fit: cover; }
+      /* Most gallery photos are landscape (~1.8:1), which 72vw crops only
+         lightly against a 100vw-wide slide. The product-style shots added
+         later are portrait (1086x1448, ~0.75:1) — forcing those into the
+         same landscape box cropped away roughly half of each photo (looked
+         "zoomed in", cutting off the vase/base or the top of the flowers).
+         .gallery-item--portrait is applied (in index.html) to just those
+         images and gets a taller box sized to their actual ratio instead,
+         so object-fit: cover has near-nothing to crop. Height only, not
+         width, so it doesn't affect the horizontal swipe math in
+         js/script.js (each slide is still flex: 0 0 100% regardless of its
+         own height). */
+      .gallery-item--portrait img { height: 133vw; }
       .gallery-item .gallery-caption { opacity: 1; }
       .gallery-slider-controls {
         display: flex;
