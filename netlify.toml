@@ -43,6 +43,11 @@
   status = 301
 
 [[redirects]]
+  from = "/flower-notes/wedding-flowers-by-venue"
+  to = "/flower-notes/wedding-flowers-by-venue/"
+  status = 301
+
+[[redirects]]
   from = "/flower-notes/funeral-flower-etiquette"
   to = "/flower-notes/funeral-flower-etiquette/"
   status = 301
