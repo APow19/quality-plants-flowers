@@ -41,7 +41,7 @@
     .delivery-banner strong { font-weight: 500; }
 
     /* ── NAVIGATION ── */
-    nav {
+    #navbar {
       position: fixed; top: 34px; left: 0; right: 0; z-index: 100;
       background: rgba(250,247,242,0.95);
       -webkit-backdrop-filter: blur(8px);
@@ -52,7 +52,7 @@
       height: 72px;
       transition: box-shadow 0.3s;
     }
-    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
 
     .nav-logo {
       font-family: var(--font-display);
@@ -83,6 +83,18 @@
       cursor: pointer;
     }
     .nav-links a:hover { color: var(--blush); }
+    /* Every standalone page (and every Flower Notes article, on the "Flower
+       Notes" submenu link) already marks its own nav link with
+       aria-current="page" in the HTML — this was previously a11y-only with
+       no visible styling, so sighted visitors had no way to tell which page
+       they were on. Underline (not just a color change) so it reads as
+       persistent state, distinct from the same-color :hover above. */
+    .nav-links a[aria-current="page"] {
+      color: var(--blush);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
 
     .nav-cta {
       background: var(--deep-green);
@@ -884,7 +896,7 @@
       cursor: pointer;
       position: relative;
     }
-    .gallery-item img { width: 100%; max-width: 100%; display: block; transition: transform 0.4s; }
+    .gallery-item img { width: 100%; max-width: 100%; height: auto; display: block; transition: transform 0.4s; }
     .gallery-item:hover img { transform: scale(1.03); }
     .gallery-item::before {
       content: '';
