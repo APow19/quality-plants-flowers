@@ -1531,6 +1531,15 @@
     .article-body ul, .article-body ol { color: var(--light-text); line-height: 1.9; margin: 0 0 1.4rem 1.4rem; }
     .article-body li { margin-bottom: 0.5rem; }
     .article-inline-img { width: 100%; max-height: 380px; object-fit: cover; margin: 0.5rem 0; }
+    /* Fixed 380px height crops landscape photos hard on narrow phones (width
+       shrinks, height doesn't) — lock this one to its own ratio instead so it
+       scales down cleanly rather than zooming into the centre. */
+    .article-inline-img--wide { aspect-ratio: 1200 / 896; max-height: 380px; height: auto; }
+    /* Tall product shots (1086x1448) in the fixed 380px box get cropped to
+       roughly the middle 55% of their height at any screen width — cuts off
+       the ribbon/box at the bottom and the top of the arrangement. Let these
+       run to their full height instead. */
+    .article-inline-img--portrait { aspect-ratio: 1086 / 1448; max-height: 820px; height: auto; }
     .article-inline-caption { color: var(--light-text); font-size: 0.82rem; font-style: italic; margin: 0.6rem 0 1.6rem; }
     .article-cta {
       margin-top: 3rem; padding: 2.5rem; background: var(--warm-white);
