@@ -329,7 +329,7 @@
     .carousel-dots {
       position: absolute; bottom: 2rem; left: 50%;
       transform: translateX(-50%);
-      display: flex; gap: 0.6rem; z-index: 3;
+      display: flex; gap: 1.6rem; z-index: 3;
     }
     .carousel-dot {
       width: 8px; height: 8px;
@@ -345,7 +345,7 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 44px; height: 44px;
+      width: 24px; height: 24px;
     }
     .carousel-dot.active {
       background: #fff;
@@ -1265,7 +1265,7 @@
     }
     .footer-brand .nav-logo { color: #fff; display: block; margin-bottom: 1rem; }
     .footer-brand p { font-size: 0.85rem; line-height: 1.7; }
-    .footer-col h4 {
+    .footer-col h3 {
       font-size: 0.68rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
