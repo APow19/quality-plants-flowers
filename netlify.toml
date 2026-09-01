@@ -63,6 +63,16 @@
   status = 301
 
 [[redirects]]
+  from = "/flower-notes/flower-delivery-huddersfield"
+  to = "/flower-notes/flower-delivery-huddersfield/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/flower-delivery-barnsley"
+  to = "/flower-notes/flower-delivery-barnsley/"
+  status = 301
+
+[[redirects]]
   from = "/valentines-day"
   to = "/valentines-day/"
   status = 301
