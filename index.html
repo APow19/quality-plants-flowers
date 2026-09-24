@@ -51,8 +51,8 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
-  <link rel="stylesheet" href="css/styles.css?v=30" />
-  <script src="js/script.js?v=30" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=36" />
+  <script src="js/script.js?v=36" defer></script>
 
   <script type="application/ld+json">
   {
@@ -220,11 +220,11 @@
     <div class="carousel-track" id="carouselTrack">
 
       <!-- Slide 1 -->
-      <div class="carousel-slide">
-        <img src="images/Flowers_HandTied.webp"
-             srcset="images/Flowers_HandTied-600w.webp 600w, images/Flowers_HandTied.webp 1200w"
+      <div class="carousel-slide slide-handtying">
+        <img src="images/Florist_HandTying.webp"
+             srcset="images/Florist_HandTying-600w.webp 600w, images/Florist_HandTying.webp 800w"
              sizes="(max-width: 768px) 100vw, 770px"
-             alt="Hand-tied bouquet by Quality Plants and Flowers, florist in Denby Dale"
+             alt="Florist's hands tying off a hand-tied bouquet of pink roses, white ranunculus and blue delphinium in a plant-filled workshop"
              fetchpriority="high"/>
         <div class="carousel-content">
           <div class="carousel-text">
@@ -241,7 +241,10 @@
 
       <!-- Slide 2 -->
       <div class="carousel-slide slide-bride">
-        <img src="images/carousel_bride.webp" alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"/>
+        <img src="images/carousel_bride.webp"
+             srcset="images/carousel_bride-600w.webp 600w, images/carousel_bride.webp 1200w"
+             sizes="(max-width: 768px) 100vw, 770px"
+             alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Wedding Specialists · Bridal Flowers</p>
@@ -256,8 +259,11 @@
       </div>
 
       <!-- Slide 3 -->
-      <div class="carousel-slide slide-summer">
-        <img src="images/Seasonal_Summer.webp" alt="Seasonal summer flower bouquet, Quality Plants and Flowers, Denby Dale florist"/>
+      <div class="carousel-slide slide-autumn">
+        <img src="images/Seasonal_Autumn.webp"
+             srcset="images/Seasonal_Autumn-600w.webp 600w, images/Seasonal_Autumn.webp 1200w"
+             sizes="(max-width: 768px) 100vw, 770px"
+             alt="Autumn flower arrangements with dahlias, pampas grass and chrysanthemums, Quality Plants and Flowers, Denby Dale florist"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Fresh · Seasonal · Locally Loved</p>
@@ -653,6 +659,7 @@
     <button class="filter-btn" data-filter="plants">Plants</button>
     <button class="filter-btn" data-filter="sympathy">Sympathy</button>
     <button class="filter-btn" data-filter="occasions">Occasions</button>
+    <button class="filter-btn" data-filter="christmas">Christmas</button>
   </div>
 
   <p class="swipe-hint"><span class="swipe-arrow">&#8592;</span> Swipe to browse <span class="swipe-arrow">&#8594;</span></p>
@@ -1121,6 +1128,74 @@
       <img loading="lazy" src="images/Prom_Bracelet_Red_Occasions.webp" alt="Red flower prom wrist corsage with a pearl band, gift boxed" width="1086" height="1448"/>
       <div class="gallery-caption"><span>Occasions</span></div>
     </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/BasketArrangement_Christmas.webp" alt="Festive basket arrangement with red and green Christmas flowers and foliage" width="1122" height="1402" style="aspect-ratio:1122/1402"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/CrateArrangement_Christmas.webp" alt="Rustic wooden crate arrangement filled with festive red and white Christmas flowers" width="1122" height="1402" style="aspect-ratio:1122/1402"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/BouquetBoxes_RedWhite_Pair.webp" alt="Pair of matching red and white Christmas bouquet boxes" width="1448" height="1086"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/BouquetBox_RedWhite.webp" alt="Red and white Christmas bouquet box arrangement with roses and foliage" width="1164" height="1351" style="aspect-ratio:1164/1351"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/FootedBowlArrangement_Christmas.webp" alt="Footed bowl Christmas table arrangement with red flowers, pinecones and foliage" width="1448" height="1086"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="christmas">
+      <img loading="lazy" src="images/HatBoxArrangement_Christmas.webp" alt="Christmas hat box flower arrangement with red roses and festive foliage" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/PillarCandleArrangement_Christmas.webp" alt="Christmas arrangement with pillar candles, red flowers and pine foliage" width="1145" height="1374" style="aspect-ratio:1145/1374"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/TableCentrepiece_Christmas_Candles.webp" alt="Christmas table centrepiece with candles, red flowers and foliage" width="1448" height="1086"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/TableCentrepiece_Christmas_WhiteRoses.webp" alt="Christmas table centrepiece with white roses and festive foliage" width="1448" height="1086"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/TroughAndPail_Christmas_Pair.webp" alt="Pair of Christmas trough and pail arrangements with red and green foliage" width="1448" height="1086"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_Citrus.webp" alt="Christmas wreath decorated with dried citrus slices and foliage" width="1179" height="1334" style="aspect-ratio:1179/1334"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_Hanging.webp" alt="Hanging Christmas wreath with festive foliage and a bow" width="1254" height="1254" style="aspect-ratio:1254/1254"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_HessianBow.webp" alt="Christmas wreath with holly, pinecones and a rustic hessian bow" width="1149" height="1368" style="aspect-ratio:1149/1368"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_HessianBow_2.webp" alt="Fresh Christmas wreath with holly, berries and a hessian bow" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_HollyCitrus.webp" alt="Christmas wreath with holly and dried citrus slices" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_Snowflake_StoneWall.webp" alt="Christmas wreath with snowflake decoration displayed on a stone wall" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--portrait" data-category="christmas">
+      <img loading="lazy" src="images/Wreaths_Christmas_Poinsettia_Pair.webp" alt="Pair of red poinsettia plants and a Christmas wreath arranged together" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
   </div>
   <div class="gallery-slider-controls">
     <button class="gallery-prev" aria-label="Previous image">&#8592;</button>
@@ -1367,7 +1442,7 @@
   <!-- Seasonal Bunches -->
   <div class="occ-section occ-section--flip">
     <div class="occ-section-img">
-      <img loading="lazy" src="images/Seasonal_Summer.webp" alt="Seasonal summer flower bunches"/>
+      <img loading="lazy" src="images/Seasonal_Autumn.webp" alt="Seasonal autumn flower arrangements with dahlias and pampas grass"/>
     </div>
     <div class="occ-section-text">
       <p class="section-label">Seasonal Bunches</p>

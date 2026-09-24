@@ -28,6 +28,16 @@
   status = 301
 
 [[redirects]]
+  from = "/flower-notes/corporate-christmas-flowers"
+  to = "/flower-notes/corporate-christmas-flowers/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/when-to-order-christmas-flowers"
+  to = "/flower-notes/when-to-order-christmas-flowers/"
+  status = 301
+
+[[redirects]]
   from = "/flower-notes/how-to-make-cut-flowers-last-longer"
   to = "/flower-notes/how-to-make-cut-flowers-last-longer/"
   status = 301

@@ -243,9 +243,14 @@
       pointer-events: none;
       -webkit-user-drag: none;
     }
-    /* Bouquets in this photo sit in the lower half of the frame, below shelving —
-       shift the crop down so they stay in view on tall (portrait-ish) carousel heights. */
-    .slide-summer img { object-position: center 60%; }
+    /* On a browser window narrower/taller than this photo's ~1.79:1 ratio
+       (e.g. a non-maximised desktop window), object-fit:cover crops the
+       sides — centred, that clips the bouquet on the right since it sits
+       right of frame centre in the source photo. Shift the crop window
+       right so the whole bouquet stays in view; the mobile override below
+       resets this to plain centring, where the much narrower viewport
+       already keeps the bouquet fully in frame without help. */
+    .slide-handtying img { object-position: 65% top; }
     .carousel-slide::after {
       content: '';
       position: absolute; inset: 0;
@@ -1357,21 +1362,19 @@
       }
       .gallery-grid::-webkit-scrollbar { display: none; }
       .gallery-item::before { display: none; }
-      /* Filters stay visible on mobile as a horizontally-scrollable chip row
-         above the reel (rather than the desktop wrapping row) since there
-         are now 6 buttons (All/Weddings/Gifts/Plants/Sympathy/Occasions) —
-         too many to wrap onto a narrow screen without pushing the gallery
-         down. js/script.js rebuilds the reel's dots/scroll position via
-         window.refreshGallerySlider() whenever a filter changes so the two
-         swipeable rows (chips + reel) don't fight each other. */
+      /* With 7 buttons now (All/Weddings/Gifts/Plants/Sympathy/Occasions/
+         Christmas), a single horizontally-scrollable chip row hid extra
+         categories off-screen with no visual cue they existed — easy to
+         miss entirely. Wrapping onto two lines instead keeps every filter
+         visible at once; each chip shrinks to auto width and the row
+         centres so two uneven lines don't look lopsided. js/script.js still
+         rebuilds the reel's dots/scroll position via
+         window.refreshGallerySlider() whenever a filter changes. */
       .gallery-filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 1.2rem 5% 0.75rem;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
       }
-      .gallery-filters::-webkit-scrollbar { display: none; }
       .gallery-filters .filter-btn {
         flex: 0 0 auto;
         white-space: nowrap;
@@ -1409,6 +1412,14 @@
          js/script.js (each slide is still flex: 0 0 100% regardless of its
          own height). */
       .gallery-item--portrait img { height: 133vw; }
+      /* .gallery-item--portrait's fixed 133vw assumes the 1086x1448 (~0.75:1)
+         ratio it was built for. Several Christmas gallery photos are portrait
+         but a different ratio (0.80-1.0:1, including a square one) — forcing
+         those into the same box cropped their sides. .gallery-item--tall
+         drops the fixed height in favour of each photo's own inline
+         aspect-ratio (set in index.html from its real width/height attrs),
+         so object-fit: cover has nothing left to crop. */
+      .gallery-item--tall img { height: auto; }
       .gallery-item .gallery-caption { opacity: 1; }
       .gallery-slider-controls {
         display: flex;
@@ -1455,10 +1466,19 @@
       .lynn-img { height: 300px; }
       .carousel { height: 56vh; min-height: 320px; }
       .carousel-slide img { object-position: center center; }
-      /* This photo's three bouquets span its full width, wider than a phone screen
-         can show at once. Rather than crop randomly into two of them, zoom in on
-         just the centre (hydrangea) bouquet so the crop looks deliberate. */
-      .slide-summer img { object-position: 53% 55%; transform: scale(1.55); }
+      /* Even centred, this photo's height-bound mobile crop clips the blue
+         delphinium at the bouquet's right edge — the bouquet sits right of
+         frame centre in the source photo, same underlying issue as the
+         desktop fix above, just re-tuned for the much taller mobile crop
+         window. Shift further right than the desktop value to keep the
+         whole bouquet in frame. */
+      .slide-handtying img { object-position: 80% center; }
+      /* This photo's three arrangements span its full width, wider than a phone
+         screen can show at once. Centring the default crop clips the third
+         (right-hand) arrangement to an awkward sliver — shift left so the
+         jug and jar arrangements show in full instead, and the crop reads as
+         deliberate rather than a mid-image cut. */
+      .slide-autumn img { object-position: 35% 50%; }
       .carousel-arrow { width: 36px; height: 36px; font-size: 0.9rem; top: auto; bottom: 1rem; transform: none; }
       .carousel-arrow.prev { left: calc(50% - 72px); }
       .carousel-arrow.next { right: calc(50% - 72px); }
