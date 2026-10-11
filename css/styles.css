@@ -251,6 +251,12 @@
        resets this to plain centring, where the much narrower viewport
        already keeps the bouquet fully in frame without help. */
     .slide-handtying img { object-position: 65% top; }
+    /* Seasonal Christmas slide (commented out in index.html until early Nov):
+       the wreath sits right of centre with a soft blur on the left for the
+       text. 70% keeps the wreath in frame when narrower windows crop the
+       sides; 45% vertical trims top and bottom evenly on wide screens so
+       neither the hanging wreaths nor the ribbon tail get cut. */
+    .slide-christmas img { object-position: 70% 45%; }
     .carousel-slide::after {
       content: '';
       position: absolute; inset: 0;
@@ -276,7 +282,9 @@
       color: rgba(255,255,255,0.78);
       margin-bottom: 1.2rem;
     }
-    .carousel-text h1 {
+    /* h2 too: the seasonal slide uses an h2 so the brand line stays the
+       page's only carousel h1 when the seasonal slide sits in front of it. */
+    .carousel-text h1, .carousel-text h2 {
       font-family: var(--font-display);
       font-size: clamp(2.6rem, 5.5vw, 4.8rem);
       font-weight: 300;
@@ -284,7 +292,7 @@
       line-height: 1.08;
       margin-bottom: 1.4rem;
     }
-    .carousel-text h1 em { font-style: italic; color: #f2c9b0; }
+    .carousel-text h1 em, .carousel-text h2 em { font-style: italic; color: #f2c9b0; }
     .carousel-text p {
       color: rgba(255,255,255,0.88);
       font-size: 1rem;
@@ -580,9 +588,10 @@
     @media (max-width: 768px) {
       .page-hero--mothers-day img { object-position: 25% center; }
     }
-    /* The wreath sits centred on the door; crop pulls slightly up so the snowy
-       pots at the very bottom (least important) are what gets trimmed first. */
-    .page-hero--christmas img { object-position: center 40%; }
+    /* The wreath sits centred on the green door; crop pulls up so the brass
+       knocker and the top of the wreath stay in frame and the tail of the bow
+       and letterbox (least important) are what gets trimmed first. */
+    .page-hero--christmas img { object-position: center 30%; }
     /* The arrangement and reception desk sit in the lower half of this shot;
        crop pulls down from center so the office ceiling (least important) is
        what gets trimmed first on a wide, short banner. */
@@ -1050,6 +1059,12 @@
       transition: transform 0.6s;
     }
     .occ-section:hover .occ-section-img img { transform: scale(1.04); }
+    /* Square product shots (1254x1254) in the wide 480px box got cover-cropped
+       to roughly their middle 70% — the wreath/hat box/pot looked zoomed in.
+       Show the whole photo instead, on the same cream as the text panel.
+       Mobile switches to a square box (see the 768px block). */
+    .occ-section-img--square { height: 520px; padding: 1.5rem; background: var(--warm-white); }
+    .occ-section-img--square img { object-fit: contain; }
     .occ-section-text {
       padding: 4rem 8%;
       display: flex; flex-direction: column; justify-content: center;
@@ -1069,6 +1084,97 @@
       font-size: 0.93rem;
       margin-bottom: 1.5rem;
     }
+
+    /* ── PRICES (Christmas page) ──
+       .occ-prices sits inside an .occ-section-text block, between the copy and
+       the CTA button; .price-list is the summary block near the top of the
+       page. Both share .price-row so a price reads the same wherever it shows.
+       "from" prices sit in a <small> before the figure. */
+    .occ-prices { list-style: none; margin: 0 0 2rem; max-width: 360px; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      padding: 0.6rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .price-row:last-child { border-bottom: 1px solid var(--border); }
+    .price-row .price {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--deep-green);
+      font-variant-numeric: lining-nums tabular-nums;
+      white-space: nowrap;
+    }
+    .price-row .price small {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--light-text);
+      margin-right: 0.3rem;
+    }
+    .price-row a { color: var(--text); text-decoration: none; }
+    .price-row a:hover { color: var(--blush); text-decoration: underline; }
+
+    .price-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .price-panel {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      padding: 2rem 2rem 2.2rem;
+    }
+    .price-panel h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--deep-green);
+      margin-bottom: 1rem;
+    }
+    .price-panel h3 a { color: inherit; text-decoration: none; }
+    .price-panel h3 a:hover { color: var(--blush); }
+    .price-panel ul { list-style: none; }
+    .price-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .price-table th {
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--light-text);
+      text-align: right;
+      padding: 0 0 0.6rem;
+    }
+    .price-table th:first-child, .price-table td:first-child { text-align: left; }
+    .price-table td {
+      padding: 0.6rem 0;
+      border-top: 1px solid var(--border);
+      text-align: right;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--deep-green);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .price-table td:first-child {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .price-table td.na { color: var(--border); font-weight: 400; }
+    .price-table tr:last-child td { border-bottom: 1px solid var(--border); }
+    .price-note {
+      max-width: 760px;
+      color: var(--light-text);
+      line-height: 1.85;
+      font-size: 0.93rem;
+    }
+    .price-note strong { color: var(--deep-green); font-weight: 500; }
 
     /* ── OCCASIONS PAGE ── */
     .occasions-intro { padding: 3rem 8%; max-width: 600px; }
@@ -1479,15 +1585,24 @@
          jug and jar arrangements show in full instead, and the crop reads as
          deliberate rather than a mid-image cut. */
       .slide-autumn img { object-position: 35% 50%; }
+      /* Narrow phone crop: shift right so the whole wreath and ribbon on the
+         bench stay in the slice, not the blurred foreground on the left. */
+      .slide-christmas img { object-position: 85% 50%; }
       .carousel-arrow { width: 36px; height: 36px; font-size: 0.9rem; top: auto; bottom: 1rem; transform: none; }
-      .carousel-arrow.prev { left: calc(50% - 72px); }
-      .carousel-arrow.next { right: calc(50% - 72px); }
+      /* 112px (not 72px) so the arrows clear the outer dots' 24px tap area —
+         at 72px they overlapped it and Lighthouse failed target-size. 112px
+         also leaves room for a 4th dot when the seasonal slide is on (a 4-dot
+         row puts the outer tap areas ~62px from centre). */
+      .carousel-arrow.prev { left: calc(50% - 112px); }
+      .carousel-arrow.next { right: calc(50% - 112px); }
       .carousel-slide::after { background: linear-gradient(160deg, rgba(20,32,20,0.62) 0%, rgba(20,32,20,0.38) 60%, rgba(20,32,20,0.18) 100%); }
       .carousel-eyebrow { color: rgba(255,255,255,0.95); }
       .carousel-text p { color: #fff; }
       .occ-section { grid-template-columns: 1fr; direction: ltr; }
       .occ-section--flip { direction: ltr; }
       .occ-section-img { height: 260px; }
+      .occ-section-img--square { height: auto; aspect-ratio: 1 / 1; padding: 0; }
+      .occ-section-img--square img { object-fit: cover; }
       .occ-section-text { padding: 2.5rem 5%; }
       .occasion-item { min-width: 100px; padding: 1rem 0.5rem; }
       .occasion-item .oi { font-size: 1.2rem; }
@@ -1574,9 +1689,22 @@
          the icon, which is a well-understood convention at this size anyway. */
       .hamburger-label { display: none; }
       .delivery-banner { font-size: 0.62rem; padding: 0.4rem 0.6rem; }
-      .carousel-text h1 { font-size: 2rem; }
+      .carousel-text h1, .carousel-text h2 { font-size: 2rem; }
       .carousel-text p { font-size: 0.88rem; }
       .btn { padding: 0.75rem 1.4rem; font-size: 0.7rem; }
+      /* Carousel text used to centre in the full slide height, so on phones
+         (eyebrow + 2-line heading + 4-line paragraph + buttons wrapping to two
+         rows) the second button landed underneath the arrows/dots at the
+         bottom. Reserve that bottom strip, tighten the vertical rhythm and
+         compact the buttons, and give short phones (56vh is only ~370px on an
+         iPhone SE) enough height for the lot. */
+      .carousel { min-height: 460px; }
+      .carousel-content { padding: 0 6% 4rem; }
+      .carousel-eyebrow { margin-bottom: 0.8rem; letter-spacing: 0.2em; }
+      .carousel-text h1, .carousel-text h2 { margin-bottom: 1rem; }
+      .carousel-text p { margin-bottom: 1.5rem; }
+      .carousel-text .btn-group { gap: 0.6rem; }
+      .carousel-text .btn { padding: 0.7rem 1.1rem; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
       .wedding-packages { padding: 3rem 5%; }

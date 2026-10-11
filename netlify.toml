@@ -28,6 +28,11 @@
   status = 301
 
 [[redirects]]
+  from = "/flower-notes/how-to-make-a-christmas-wreath"
+  to = "/flower-notes/how-to-make-a-christmas-wreath/"
+  status = 301
+
+[[redirects]]
   from = "/flower-notes/corporate-christmas-flowers"
   to = "/flower-notes/corporate-christmas-flowers/"
   status = 301

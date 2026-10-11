@@ -1,10 +1,11 @@
 ﻿  // ── CAROUSEL — RAF-driven, no CSS transition sticking ──
-  const totalSlides = 3;
+  const track = document.getElementById('carouselTrack');
+  // Counted from the DOM (not hardcoded) so the seasonal slide in index.html
+  // can be commented in/out without touching this file.
+  const totalSlides = track ? track.querySelectorAll('.carousel-slide').length : 0;
   let currentSlide = 0;
   let isAnimating = false;
   let autoplayTimer;
-
-  const track = document.getElementById('carouselTrack');
 
   function setTrackX(pct) {
     track.style.transform = 'translateX(' + pct + '%)';
@@ -61,7 +62,9 @@
 
   function resetAutoplay() {
     clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(() => { if (!isAnimating) carouselMove(1); }, 5500);
+    // 7s per slide (was 5.5s — owner found it too quick to read a slide's
+    // headline + paragraph before it moved on).
+    autoplayTimer = setInterval(() => { if (!isAnimating) carouselMove(1); }, 7000);
   }
 
   // Initialise position without animation
@@ -322,7 +325,17 @@
       });
     }
 
+    // Browsers try to restore the reel's old scroll position on reload/back,
+    // but the gallery is display:none and its images lazy-load, so the restore
+    // gets retried as layout settles — combined with scroll-snap, that played
+    // out on phones as the reel racing from slide 1 through every photo to
+    // where you'd left off. Always start the reel at slide 1 instead: until
+    // the visitor has swiped or used the arrows/dots themselves, any scroll
+    // the browser makes on its own is snapped straight back to 0.
+    let userMoved = false;
+
     function scrollToSlide(index) {
+      userMoved = true;
       grid.scrollTo({ left: index * grid.offsetWidth, behavior: 'smooth' });
     }
 
@@ -333,7 +346,15 @@
       grid.scrollTo({ left: 0, behavior: 'auto' });
     };
 
-    grid.addEventListener('scroll', updateActiveDot, { passive: true });
+    grid.addEventListener('scroll', function() {
+      if (!userMoved && grid.scrollLeft !== 0) {
+        grid.scrollLeft = 0;
+        return;
+      }
+      updateActiveDot();
+    }, { passive: true });
+    grid.addEventListener('wheel', function() { userMoved = true; }, { passive: true });
+    grid.addEventListener('keydown', function() { userMoved = true; });
 
     // Loop on prev/next buttons
     prevBtn.addEventListener('click', function() {
@@ -350,6 +371,7 @@
     let tsX = 0, tsY = 0, axisLocked = false;
 
     grid.addEventListener('touchstart', function(e) {
+      userMoved = true;
       tsX = e.touches[0].clientX;
       tsY = e.touches[0].clientY;
       axisLocked = false;

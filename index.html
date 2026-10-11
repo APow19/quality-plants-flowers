@@ -51,8 +51,8 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" crossorigin="anonymous">
   </noscript>
-  <link rel="stylesheet" href="css/styles.css?v=36" />
-  <script src="js/script.js?v=36" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=37" />
+  <script src="js/script.js?v=37" defer></script>
 
   <script type="application/ld+json">
   {
@@ -219,6 +219,36 @@
   <section class="carousel" id="heroCarousel">
     <div class="carousel-track" id="carouselTrack">
 
+      <!-- SEASONAL SLIDE: CHRISTMAS (switched off; turn on in early November,
+           off again around Boxing Day). To switch on:
+             1. Remove the opening and closing comment markers around this slide.
+             2. Swap the three carousel dots below for the four-dot version
+                commented out beneath them.
+             3. Move fetchpriority="high" from the Slide 1 (hand-tying) image to
+                this slide's image, and set Slide 1's image to fetchpriority="low".
+           The carousel script counts slides itself, so no JS change is needed.
+           Uses an h2 (not h1) so "Where Every Bloom Tells a Story" stays the
+           page's main heading.
+      <div class="carousel-slide slide-christmas">
+        <img src="images/carousel_christmas.webp"
+             srcset="images/carousel_christmas-600w.webp 600w, images/carousel_christmas.webp 1376w"
+             sizes="(max-width: 768px) 100vw, 770px"
+             alt="Handmade fresh Christmas wreath with dried oranges, pinecones, cinnamon and a red velvet ribbon on a rustic workbench in the Denby Dale studio, with finished wreaths and fairy lights behind"
+             fetchpriority="high"/>
+        <div class="carousel-content">
+          <div class="carousel-text">
+            <p class="carousel-eyebrow">Christmas 2026 · Denby Dale</p>
+            <h2>Handmade Wreaths &amp; <em>Festive Flowers</em></h2>
+            <p>Fresh and artificial wreaths from £10.50, plus hat boxes, centrepieces and more, all made by hand in our studio.</p>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="/christmas/">Shop Christmas</a>
+              <a class="btn btn-outline" href="/christmas/#prices">See 2026 Prices</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      END SEASONAL SLIDE -->
+
       <!-- Slide 1 -->
       <div class="carousel-slide slide-handtying">
         <img src="images/Florist_HandTying.webp"
@@ -244,7 +274,8 @@
         <img src="images/carousel_bride.webp"
              srcset="images/carousel_bride-600w.webp 600w, images/carousel_bride.webp 1200w"
              sizes="(max-width: 768px) 100vw, 770px"
-             alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"/>
+             alt="Bridal bouquet by Quality Plants and Flowers, wedding florist serving Huddersfield and Barnsley"
+             fetchpriority="low"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Wedding Specialists · Bridal Flowers</p>
@@ -263,7 +294,8 @@
         <img src="images/Seasonal_Autumn.webp"
              srcset="images/Seasonal_Autumn-600w.webp 600w, images/Seasonal_Autumn.webp 1200w"
              sizes="(max-width: 768px) 100vw, 770px"
-             alt="Autumn flower arrangements with dahlias, pampas grass and chrysanthemums, Quality Plants and Flowers, Denby Dale florist"/>
+             alt="Autumn flower arrangements with dahlias, pampas grass and chrysanthemums, Quality Plants and Flowers, Denby Dale florist"
+             fetchpriority="low"/>
         <div class="carousel-content">
           <div class="carousel-text">
             <p class="carousel-eyebrow">Fresh · Seasonal · Locally Loved</p>
@@ -288,6 +320,15 @@
       <button class="carousel-dot" onclick="carouselGoTo(1)" aria-label="Go to slide 2"></button>
       <button class="carousel-dot" onclick="carouselGoTo(2)" aria-label="Go to slide 3"></button>
     </div>
+    <!-- Four-dot version for when the seasonal Christmas slide is switched on
+         (replace the dots block above with this):
+    <div class="carousel-dots" id="carouselDots">
+      <button class="carousel-dot active" onclick="carouselGoTo(0)" aria-label="Go to slide 1"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(1)" aria-label="Go to slide 2"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(2)" aria-label="Go to slide 3"></button>
+      <button class="carousel-dot" onclick="carouselGoTo(3)" aria-label="Go to slide 4"></button>
+    </div>
+    -->
   </section>
 
   <!-- Occasion strip -->
@@ -1194,6 +1235,34 @@
     </div>
     <div class="gallery-item gallery-item--portrait" data-category="christmas">
       <img loading="lazy" src="images/Wreaths_Christmas_Poinsettia_Pair.webp" alt="Pair of red poinsettia plants and a Christmas wreath arranged together" width="1086" height="1448"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/WreathOnDoor_Christmas_GreenDoor.webp" alt="Fresh Christmas wreath with dried orange, cinnamon and a red velvet bow on a green front door" width="1376" height="768"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_Fresh.webp" alt="Fresh Christmas wreath with fir, eucalyptus, pinecones, berries, dried orange and a red velvet bow" width="1376" height="768"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/Wreath_Christmas_Artificial.webp" alt="Artificial Christmas wreath with frosted pine, baubles, cinnamon sticks and a velvet and hessian bow" width="1254" height="1254" style="aspect-ratio:1254/1254"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/HatBox_Christmas_Tartan.webp" alt="Red Christmas hat box with tartan ribbon, filled with red chrysanthemums, carnations, holly and dried orange" width="1254" height="1254" style="aspect-ratio:1254/1254"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/TableCentrepiece_Christmas_GoldCandles.webp" alt="Long Christmas table centrepiece with holly, ivy, white roses, pinecones and two gold candles" width="1536" height="1024"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item" data-category="christmas">
+      <img loading="lazy" src="images/WoodenTrough_Christmas.webp" alt="Rustic wooden trough filled with Christmas foliage, holly, red berries and pinecones" width="1536" height="1024"/>
+      <div class="gallery-caption"><span>Christmas</span></div>
+    </div>
+    <div class="gallery-item gallery-item--tall" data-category="christmas">
+      <img loading="lazy" src="images/ChristmasPot_Christmas.webp" alt="Galvanised Christmas pot of winter foliage, red berries and pinecones with a red velvet bow" width="1254" height="1254" style="aspect-ratio:1254/1254"/>
       <div class="gallery-caption"><span>Christmas</span></div>
     </div>
   </div>
