@@ -33,6 +33,11 @@
   status = 301
 
 [[redirects]]
+  from = "/flower-notes/what-size-wreath-for-front-door"
+  to = "/flower-notes/what-size-wreath-for-front-door/"
+  status = 301
+
+[[redirects]]
   from = "/flower-notes/corporate-christmas-flowers"
   to = "/flower-notes/corporate-christmas-flowers/"
   status = 301
@@ -78,14 +83,36 @@
   status = 301
 
 [[redirects]]
-  from = "/flower-notes/flower-delivery-huddersfield"
-  to = "/flower-notes/flower-delivery-huddersfield/"
+  from = "/flower-notes/flower-delivery-huddersfield-barnsley"
+  to = "/flower-notes/flower-delivery-huddersfield-barnsley/"
   status = 301
+
+# The separate Huddersfield and Barnsley delivery posts were merged into one
+# (Oct 2026) — permanently redirect both old URLs, with and without slash.
+
+[[redirects]]
+  from = "/flower-notes/flower-delivery-huddersfield"
+  to = "/flower-notes/flower-delivery-huddersfield-barnsley/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/flower-notes/flower-delivery-huddersfield/"
+  to = "/flower-notes/flower-delivery-huddersfield-barnsley/"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/flower-notes/flower-delivery-barnsley"
-  to = "/flower-notes/flower-delivery-barnsley/"
+  to = "/flower-notes/flower-delivery-huddersfield-barnsley/"
   status = 301
+  force = true
+
+[[redirects]]
+  from = "/flower-notes/flower-delivery-barnsley/"
+  to = "/flower-notes/flower-delivery-huddersfield-barnsley/"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/valentines-day"

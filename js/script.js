@@ -416,9 +416,15 @@
   // Fade-up animations
   function observeFadeUps() {
     const els = document.querySelectorAll('.fade-up');
+    // threshold 0 + a bottom rootMargin, not a ratio threshold: a ratio like
+    // 0.1 can never be reached by a section taller than 10x the viewport
+    // (long Flower Notes articles are one .fade-up block), which left the
+    // whole article stuck invisible. This fires once its top is ~10% up the screen.
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
     els.forEach(el => obs.observe(el));
   }
 

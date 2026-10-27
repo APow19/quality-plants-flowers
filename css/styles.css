@@ -281,18 +281,22 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
       margin-bottom: 1.2rem;
+      /* Slide 1's eyebrow is the page's h1 — undo the browser's h1 defaults */
+      font-weight: inherit;
+      line-height: inherit;
     }
-    /* h2 too: the seasonal slide uses an h2 so the brand line stays the
-       page's only carousel h1 when the seasonal slide sits in front of it. */
-    .carousel-text h1, .carousel-text h2 {
+    /* Big slide headline. Slide 1's brand tagline is a p.carousel-title (the
+       page's h1 is its eyebrow line); the other slides use h2. */
+    .carousel-text h2, .carousel-text .carousel-title {
       font-family: var(--font-display);
       font-size: clamp(2.6rem, 5.5vw, 4.8rem);
       font-weight: 300;
       color: #fff;
       line-height: 1.08;
       margin-bottom: 1.4rem;
+      max-width: none;
     }
-    .carousel-text h1 em, .carousel-text h2 em { font-style: italic; color: #f2c9b0; }
+    .carousel-text h2 em, .carousel-text .carousel-title em { font-style: italic; color: #f2c9b0; }
     .carousel-text p {
       color: rgba(255,255,255,0.88);
       font-size: 1rem;
@@ -778,7 +782,7 @@
       position: absolute; inset: 0;
       background: linear-gradient(transparent 30%, rgba(45,61,46,0.7));
     }
-    .about-hero h1 {
+    .about-hero h1, .about-hero h2 {
       position: relative; z-index: 1;
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
@@ -858,7 +862,7 @@
       padding: 4rem 8% 2rem;
       border-bottom: 1px solid var(--border);
     }
-    .page-header h1 {
+    .page-header h1, .page-header h2 {
       font-family: var(--font-display);
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 300;
@@ -1651,7 +1655,9 @@
       font-size: 0.8rem; color: var(--light-text);
     }
     .breadcrumbs a { color: var(--light-text); text-decoration: underline; }
-    .article-hero-img { width: 100%; max-height: 460px; object-fit: cover; }
+    /* height:auto so the width/height attrs on the <img> only reserve space
+       (no layout shift) instead of fixing the rendered height */
+    .article-hero-img { width: 100%; height: auto; max-height: 460px; object-fit: cover; }
     .article-body { max-width: 720px; margin: 0 auto; padding: 0 8%; }
     .article-meta {
       display: flex; gap: 1.2rem; flex-wrap: wrap;
@@ -1662,10 +1668,15 @@
       font-weight: 400; color: var(--deep-green); line-height: 1.25;
       margin: 2.5rem 0 1rem;
     }
+    /* Used for the visible "Common Questions" entries that the FAQPage schema mirrors */
+    .article-body h3 {
+      font-family: var(--font-body); font-size: 1.02rem; font-weight: 500;
+      color: var(--deep-green); line-height: 1.5; margin: 1.6rem 0 0.4rem;
+    }
     .article-body p { color: var(--light-text); line-height: 1.9; font-size: 1rem; margin-bottom: 1.4rem; }
     .article-body ul, .article-body ol { color: var(--light-text); line-height: 1.9; margin: 0 0 1.4rem 1.4rem; }
     .article-body li { margin-bottom: 0.5rem; }
-    .article-inline-img { width: 100%; max-height: 380px; object-fit: cover; margin: 0.5rem 0; }
+    .article-inline-img { width: 100%; height: auto; max-height: 380px; object-fit: cover; margin: 0.5rem 0; }
     /* Fixed 380px height crops landscape photos hard on narrow phones (width
        shrinks, height doesn't) — lock this one to its own ratio instead so it
        scales down cleanly rather than zooming into the centre. */
@@ -1689,7 +1700,7 @@
          the icon, which is a well-understood convention at this size anyway. */
       .hamburger-label { display: none; }
       .delivery-banner { font-size: 0.62rem; padding: 0.4rem 0.6rem; }
-      .carousel-text h1, .carousel-text h2 { font-size: 2rem; }
+      .carousel-text h2, .carousel-text .carousel-title { font-size: 2rem; }
       .carousel-text p { font-size: 0.88rem; }
       .btn { padding: 0.75rem 1.4rem; font-size: 0.7rem; }
       /* Carousel text used to centre in the full slide height, so on phones
@@ -1701,7 +1712,7 @@
       .carousel { min-height: 460px; }
       .carousel-content { padding: 0 6% 4rem; }
       .carousel-eyebrow { margin-bottom: 0.8rem; letter-spacing: 0.2em; }
-      .carousel-text h1, .carousel-text h2 { margin-bottom: 1rem; }
+      .carousel-text h2, .carousel-text .carousel-title { margin-bottom: 1rem; }
       .carousel-text p { margin-bottom: 1.5rem; }
       .carousel-text .btn-group { gap: 0.6rem; }
       .carousel-text .btn { padding: 0.7rem 1.1rem; }
