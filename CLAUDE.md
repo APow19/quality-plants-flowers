@@ -43,7 +43,7 @@ christmas/index.html                — standalone Christmas landing page (seaso
 mothers-day/index.html              — standalone Mother's Day landing page (seasonal, in Occasions dropdown)
 valentines-day/index.html           — standalone Valentine's Day landing page (seasonal, in Occasions dropdown)
 flower-notes/index.html             — Flower Notes article index (card grid)
-flower-notes/<slug>/index.html      — one folder per article (12 currently — see Flower Notes section)
+flower-notes/<slug>/index.html      — one folder per article (13 currently — see Flower Notes section)
 css/styles.css                      — all styles (shared across every page)
 js/script.js                        — all JavaScript (shared across every page)
 images/                             — all site images in use (.webp)
