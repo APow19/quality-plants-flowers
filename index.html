@@ -6,6 +6,8 @@
   <title>Florist in Denby Dale | Huddersfield &amp; Barnsley Delivery</title>
   <meta name="description" content="Family-run florist in Denby Dale with free next day delivery to Huddersfield, Barnsley &amp; Penistone. Wedding flowers, funeral tributes, gifts &amp; office flowers." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
+  <!-- The About section moved to /about/ (Nov 2026): send old /#about links and bookmarks there -->
+  <script>if (location.hash === '#about') location.replace('/about/');</script>
   <link rel="canonical" href="https://www.qualityplantsandflowers.com" />
 
   <!-- Google Analytics — loaded after page is interactive to avoid blocking LCP -->
@@ -72,8 +74,8 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 53.5643,
-      "longitude": -1.7162
+      "latitude": 53.572619,
+      "longitude": -1.658273
     },
     "telephone": "+441484868539",
     "url": "https://www.qualityplantsandflowers.com",
@@ -114,13 +116,7 @@
       { "@type": "Place", "name": "Kirkheaton" },
       { "@type": "AdministrativeArea", "name": "West Yorkshire" },
       { "@type": "AdministrativeArea", "name": "South Yorkshire" }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "41",
-      "bestRating": "5"
-    }
+    ]
   }
   </script>
 
@@ -199,7 +195,7 @@
         <button type="button" class="nav-dropdown-caret" aria-haspopup="true" aria-expanded="false" aria-controls="moreSubmenu" aria-label="Show more links" onclick="toggleDropdown(this)"><svg class="nav-dropdown-caret-icon" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <ul class="nav-dropdown-menu" id="moreSubmenu">
-        <li><a href="#about" onclick="showPage('about');closeMenu();return false;">About</a></li>
+        <li><a href="/about/" onclick="closeMenu()">About</a></li>
         <li><a href="#gallery" onclick="showPage('gallery');closeMenu();return false;">Gallery</a></li>
         <li><a href="/flower-notes/" onclick="closeMenu()">Flower Notes</a></li>
       </ul>
@@ -333,6 +329,13 @@
     -->
   </section>
 
+  <!-- Trust strip: Google rating (visible text only, no review schema; see CLAUDE.md). Inline styles so no CSS version bump is needed. Wraps onto separate lines on phones. -->
+  <div style="background:#fff;border-bottom:1px solid var(--border);padding:0.9rem 5%;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.4rem 2.2rem;font-size:0.85rem;color:var(--deep-green);text-align:center;">
+    <a href="https://www.google.com/search?q=Quality+Plants+and+Flowers+Denby+Dale#lrd=0x487bd940da49fe7d:0x92fc4ea2aca3270d,1,,," target="_blank" rel="noopener" style="color:inherit;text-decoration:none;white-space:nowrap;"><span aria-hidden="true" style="color:#c9971c;letter-spacing:0.08em;font-size:1rem;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong style="font-weight:500;">Rated 4.9 on Google</strong> <span style="text-decoration:underline;color:var(--blush);">Read our reviews</span></a>
+    <span>Family florist in Denby Dale for over 12 years</span>
+    <span>Free next day local delivery over £30</span>
+  </div>
+
   <!-- Occasion strip -->
   <div class="occasion-strip">
     <div class="occasion-item" onclick="showPage('gifts')">
@@ -390,6 +393,31 @@
     <cite>— Sarah &amp; James, Wedding Clients · Denby Dale</cite>
   </section>
 
+  <!-- GOOGLE REVIEWS: real reviews quoted word for word (trimmed only with ellipses). Visible text only: no Review/AggregateRating schema (see CLAUDE.md) -->
+  <section class="wedding-testimonials fade-up">
+    <p class="section-label">Google Reviews</p>
+    <h2 class="section-title">Rated <em>4.9 on Google</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <blockquote>&ldquo;Always buy flowers from Quality Plants and Flowers in Denby Dale as they are super fresh and beautifully arranged. Most recently a fantastic bouquet for mum&rsquo;s 80th. She was thrilled and just knows they will last for weeks.&rdquo;</blockquote>
+        <cite>— Susan MacDonald · Google review</cite>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>&ldquo;After losing my mum recently I contacted Lynn from Quality Plants &amp; Flowers in Denby Dale for some flowers, each from my dad, my sister &amp; myself. The flowers were absolutely beautiful &amp; exactly what we wanted. I cannot recommend Lynn from Quality Plants &amp; flowers enough.&rdquo;</blockquote>
+        <cite>— Jane Senior · Google review</cite>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>&ldquo;Used this florist for my wedding&hellip; The flowers complemented my colour scheme effortlessly nothing was too much and was a really personal service. The florist got it just right they were absolutely stunning.&rdquo;</blockquote>
+        <cite>— Alison West · Google review</cite>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>&ldquo;I explained that I wanted a bunch of only red and white flowers, with some greenery. The recipient was so touched that a local florist delivered the flowers to her door&hellip; They were so, so stunning. I will certainly be back for more!&rdquo;</blockquote>
+        <cite>— sandy poole · Google review</cite>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem"><a href="https://www.google.com/search?q=Quality+Plants+and+Flowers+Denby+Dale#lrd=0x487bd940da49fe7d:0x92fc4ea2aca3270d,1,,," target="_blank" rel="noopener" class="btn btn-outline" style="color:var(--deep-green);border-color:var(--deep-green)">Read all our reviews on Google</a></p>
+  </section>
+
   <section class="section fade-up" style="text-align:center">
     <p class="section-label">Flower Notes</p>
     <h2 class="section-title">Read our latest <em>flower &amp; plant care tips</em></h2>
@@ -425,52 +453,6 @@
     </div>
   </section>
 
-</div>
-
-<!-- ══════════════════ ABOUT PAGE ══════════════════ -->
-<div id="about" class="page">
-  <div class="about-hero">
-    <h2>Our Story</h2>
-  </div>
-  <div class="about-body">
-    <div class="about-text">
-      <p class="section-label">About Quality Plants &amp; Flowers</p>
-      <h2>A family business with a passion for flowers, <em>rooted in Denby Dale</em></h2>
-      <p>Quality Plants &amp; Flowers is a proud family-run florist nestled in the heart of Denby Dale, at 373 Wakefield Road. We've been part of this wonderful community for over 12 years — and every arrangement we create carries that history of passion, dedication, and love.</p>
-      <p>Our expert florists bring decades of combined experience to every arrangement, drawing inspiration from seasonal blooms, garden traditions, and the unique stories of every customer we serve.</p>
-      <p>From intimate hand-tied bouquets to grand wedding installations, we approach every commission with the same care, creativity, and commitment to excellence — because when you choose Quality Plants &amp; Flowers, you're not just buying flowers. You're trusting us with your most special moments.</p>
-      <button class="btn btn-primary" style="margin-top:1.5rem" onclick="showPageForm('contact')">Work With Us</button>
-    </div>
-  </div>
-
-  <!-- Lynn's story -->
-  <div class="lynn-section">
-
-    <div>
-      <p class="section-label" style="color:var(--gold)">Meet the Florist</p>
-      <h2>Meet <em>Lynn</em> — the heart behind every bloom</h2>
-      <p>Lynn has been a florist for over 20 years, and her passion for flowers is as fresh and vibrant today as it was on day one. What began as a deep love of nature and a gift for creativity has blossomed into a business that has touched thousands of lives across the local community.</p>
-      <p>Lynn puts her heart into every arrangement — whether it's a simple birthday bunch or a full wedding flower package. She takes the time to understand what each customer truly wants and brings a warmth and expertise to her work that you simply can't find with a large chain florist.</p>
-      <p>As a family business, Lynn has built Quality Plants &amp; Flowers on trust, personal service, and a genuine love for what she does. She knows many of her customers by name, she remembers the flowers she made for your mum's birthday last year, and she cares — deeply — about making your flowers perfect every single time.</p>
-      <p style="margin-top:0.5rem"><em>"Every flower I arrange carries a little piece of my heart. That's a promise I've kept for over 20 years — and I have no intention of stopping."</em></p>
-      <p style="margin-top:0.5rem; font-size:0.8rem; color:rgba(255,255,255,0.5)">— Lynn, Owner &amp; Head Florist</p>
-    </div>
-  </div>
-
-  <div class="values-grid fade-up">
-    <div class="value-card">
-      <h3>Quality First</h3>
-      <p>We never compromise. Every stem is inspected, every arrangement held to the highest standard before it leaves our studio on Wakefield Road.</p>
-    </div>
-    <div class="value-card">
-      <h3>Family &amp; Community</h3>
-      <p>We're proud to be part of Denby Dale — supporting local events, knowing our customers personally, and giving back to the community that has supported us for over 12 years.</p>
-    </div>
-    <div class="value-card">
-      <h3>Sustainably Minded</h3>
-      <p>We source locally wherever possible, minimise waste, and use eco-friendly packaging because we love the planet our flowers grow on.</p>
-    </div>
-  </div>
 </div>
 
 <!-- ══════════════════ GALLERY PAGE ══════════════════ -->
@@ -1240,6 +1222,13 @@
         </div>
       </div>
       <div class="contact-detail">
+        <div class="cd-icon">⭐</div>
+        <div class="contact-detail-text">
+          <strong>Rated 4.9 on Google</strong>
+          <span><a href="https://www.google.com/search?q=Quality+Plants+and+Flowers+Denby+Dale#lrd=0x487bd940da49fe7d:0x92fc4ea2aca3270d,1,,," target="_blank" rel="noopener" style="text-decoration:underline;">Read our reviews</a></span>
+        </div>
+      </div>
+      <div class="contact-detail">
         <div class="cd-icon">✉️</div>
         <div class="contact-detail-text">
           <strong>Email Us</strong>
@@ -1352,7 +1341,7 @@
       <h3>Navigate</h3>
       <ul>
         <li><a href="/" onclick="showPage('home');return false;">Home</a></li>
-        <li><a href="#about" onclick="showPage('about');return false;">About Lynn</a></li>
+        <li><a href="/about/">About Lynn</a></li>
         <li><a href="/weddings/">Weddings</a></li>
         <li><a href="/funerals/">Funerals</a></li>
         <li><a href="/corporate/">Corporate</a></li>

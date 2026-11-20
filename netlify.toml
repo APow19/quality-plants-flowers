@@ -43,6 +43,26 @@
   status = 301
 
 [[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/how-to-care-for-cyclamen"
+  to = "/flower-notes/how-to-care-for-cyclamen/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/christmas-flower-gift-ideas"
+  to = "/flower-notes/christmas-flower-gift-ideas/"
+  status = 301
+
+[[redirects]]
+  from = "/flower-notes/christmas-grave-flowers"
+  to = "/flower-notes/christmas-grave-flowers/"
+  status = 301
+
+[[redirects]]
   from = "/flower-notes/christmas-table-centrepiece"
   to = "/flower-notes/christmas-table-centrepiece/"
   status = 301
