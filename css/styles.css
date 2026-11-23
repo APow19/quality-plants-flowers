@@ -1726,3 +1726,32 @@
       .contact-info { padding: 2rem 5%; }
       .contact-form-area { padding: 2rem 5%; }
     }
+
+    /* ===== DECEMBER OPENING HOURS (christmas/#december-hours) =====
+       Seasonal: a Mon–Sun calendar of the month's hours. On phones the
+       weekday header and blank lead-in cell drop out and each day becomes
+       a full-width row, so it reads as a simple list. */
+    .dec-hours { max-width: 960px; }
+    .dec-hours ul { list-style: none; margin: 0; padding: 0; }
+    .dec-hours-head, .dec-hours-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; }
+    .dec-hours-head li { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-align: center; padding-bottom: 0.4rem; }
+    .dec-hours-day { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; padding: 0.7rem 0.5rem; text-align: center; display: flex; flex-direction: column; gap: 0.2rem; min-height: 88px; }
+    .dec-hours-day--blank { background: transparent; border: none; }
+    .dec-hours-date { font-family: var(--font-display); font-size: 1.25rem; color: var(--deep-green); line-height: 1.1; }
+    .dec-hours-date abbr { display: none; text-decoration: none; }
+    .dec-hours-time { font-size: 0.82rem; color: var(--text); }
+    .dec-hours-note { font-size: 0.68rem; color: var(--blush); font-weight: 500; line-height: 1.3; }
+    .dec-hours-day--closed { background: transparent; }
+    .dec-hours-day--closed .dec-hours-time { color: var(--light-text); }
+    .dec-hours-day--closed .dec-hours-date { color: var(--light-text); }
+    .dec-hours-day--special { border-color: var(--blush); }
+    @media (max-width: 768px) {
+      .dec-hours-head { display: none; }
+      .dec-hours-grid { grid-template-columns: 1fr; gap: 0; }
+      .dec-hours-day--blank { display: none; }
+      .dec-hours-day { flex-direction: row; align-items: baseline; text-align: left; min-height: 0; border-radius: 0; border-width: 0 0 1px; padding: 0.6rem 0.2rem; gap: 0.8rem; }
+      .dec-hours-day--special { border-color: var(--border); }
+      .dec-hours-date { font-size: 1.05rem; min-width: 5.5rem; }
+      .dec-hours-date abbr { display: inline; }
+      .dec-hours-note { margin-left: auto; }
+    }
