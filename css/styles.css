@@ -1692,6 +1692,10 @@
       border: 1px solid var(--border); text-align: center;
     }
     .article-cta p { margin-bottom: 1.2rem; }
+    /* Smaller buying box shown straight after "The Quick Answer" on Christmas posts */
+    .article-cta--early { margin: 2rem 0 2.5rem; padding: 1.5rem 1.5rem 1.25rem; }
+    .article-cta--early p { margin-bottom: 1rem; }
+    .article-cta--early .article-cta-call { margin: 0.75rem 0 0; }
 
     /* ── SMALL PHONES ── */
     @media (max-width: 480px) {
